@@ -4,8 +4,8 @@ function Contact() {
             <h1>Contact Us</h1>
             <div className="card">
                 <h3>Church Office</h3>
-                <p>Email: info@peechurch.com</p>
-                <p>Phone: +1 (555) 123-4567</p>
+                <p>Email: peecc2010@gmail.com</p>
+                <p>Phone: +1 (614) 596-3132</p>
             </div>
             <div className="card">
                 <h3>Location</h3>
