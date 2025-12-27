@@ -8,7 +8,7 @@ function Giving() {
                     <h3>Online Giving</h3>
                     <ul>
                         {/*<li>Secure online donation form</li>*/}
-                        <li>One-time or recurring donations. Zelle => peecc2010@gmail.com</li>
+                        <li>One-time or recurring donations. Zelle - peecc2010@gmail.com</li>
                     </ul>
                 </div>
 
