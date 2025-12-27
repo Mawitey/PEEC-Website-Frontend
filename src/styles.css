@@ -1,0 +1,343 @@
+/*body {*/
+/*    font-family: Arial, sans-serif;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.navbar {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 10px 20px;*/
+/*    background-color: #3b82f6; !* blue *!*/
+/*    color: white;*/
+/*}*/
+
+/*.navbar ul {*/
+/*    list-style: none;*/
+/*    display: flex;*/
+/*    gap: 15px;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+/*.navbar a {*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.navbar a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
+
+/*.content {*/
+/*    padding: 20px;*/
+/*    min-height: 80vh;*/
+/*    background-color: #f0f4f8;*/
+/*}*/
+
+/*.page h1 {*/
+/*    color: #1e40af;*/
+/*}*/
+
+/*.footer {*/
+/*    text-align: center;*/
+/*    padding: 10px;*/
+/*    background-color: #3b82f6;*/
+/*    color: white;*/
+/*}*/
+
+/*!* =========================*/
+/*   Global Styles*/
+/*========================= *!*/
+
+/*.about-section {*/
+/*    margin-top: 1.8rem;*/
+/*}*/
+
+/*.about-section h3 {*/
+/*    color: var(--primary-color);*/
+/*    margin-bottom: 0.5rem;*/
+/*}*/
+
+/*.about-section p {*/
+/*    color: var(--muted-text);*/
+/*    max-width: 800px;*/
+/*}*/
+
+/*.giving-section {*/
+/*    margin-top: 1.5rem;*/
+/*}*/
+
+/*.giving-card {*/
+/*    background-color: var(--white);*/
+/*    padding: 2rem;*/
+/*    margin-top: 1.5rem;*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);*/
+/*}*/
+
+/*.giving-card ul {*/
+/*    margin: 1rem 0;*/
+/*    padding-left: 1.2rem;*/
+/*}*/
+
+/*.giving-card li {*/
+/*    margin-bottom: 0.4rem;*/
+/*    color: var(--muted-text);*/
+/*}*/
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #374151;
+    line-height: 1.7;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 0 0 10px 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #374151;
+    font-weight: 600;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #6b7280;
+}
+
+/* Hero Section (Light) */
+.hero {
+    background: linear-gradient(135deg, #e0e7ff 0%, #f5f7fa 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-radius: 12px;
+    margin: 2rem auto;
+}
+.hero h1 {
+    font-size: 3rem;
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: #4b5563;
+}
+
+/* Dark Section Wrapper */
+.dark-section {
+    background-color: #1f2937; /* dark gray-blue */
+    color: #f9fafb; /* light text */
+    padding: 3rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+
+/* Headings inside dark sections */
+.dark-section h1,
+.dark-section h2,
+.dark-section h3 {
+    color: #f9fafb;
+}
+
+/* Cards */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.card small {
+    color: #6b7280;
+}
+
+/* Buttons */
+button, .btn {
+    background-color: #d1d5db;
+    color: #374151;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #9ca3af;
+    transform: translateY(-2px);
+}
+
+/* Page container */
+.page-container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #111827; /* dark footer */
+    color: #f9fafb;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* Dark Section */
+.dark-section {
+    background-color: #1f2937; /* dark gray-blue */
+    color: #f9fafb; /* light text */
+    padding: 3rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+
+/* Light Section (default) */
+section {
+    margin-bottom: 3rem;
+    background-color: #f5f7fa;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+/* Cards */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Footer Darker */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
+/* Dark Section */
+.dark-section {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 3rem 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+}
+
+/* Light Sections */
+section {
+    margin-bottom: 3rem;
+    background-color: #f5f7fa;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+/* Cards */
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+/* Cards inside dark sections */
+.dark-section .card {
+    background-color: #ffffff; /* white card */
+    color: #111827; /* dark text for readability */
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Optional: make links/buttons inside dark-section cards visible */
+.dark-section .card a,
+.dark-section .card button {
+    color: #1f2937; /* dark text */
+}
+
+/* Cards inside dark sections (white background, readable text) */
+.dark-section .card {
+    background-color: #ffffff;  /* white card */
+    color: #111827;             /* dark text for readability */
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Ensure headings inside cards are dark */
+.dark-section .card h3,
+.dark-section .card h2,
+.dark-section .card h1 {
+    color: #111827;
+}
