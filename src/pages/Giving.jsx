@@ -7,8 +7,8 @@ function Giving() {
                 <div className="card">
                     <h3>Online Giving</h3>
                     <ul>
-                        <li>Secure online donation form</li>
-                        <li>One-time or recurring donations</li>
+                        {/*<li>Secure online donation form</li>*/}
+                        <li>One-time or recurring donations. Zelle => peecc2010@gmail.com</li>
                     </ul>
                 </div>
 
@@ -16,7 +16,7 @@ function Giving() {
                     <h3>In-Person Giving</h3>
                     <ul>
                         <li>During Sunday service</li>
-                        <li>Drop your offering in the collection box</li>
+                        {/*<li>Drop your offering in the collection box</li>*/}
                     </ul>
                 </div>
             </section>

@@ -20,10 +20,10 @@ function Updates() {
             <section className="dark-section">
                 <h2>Announcements</h2>
                 <div className="card">
-                    <p>Children's Ministry is starting this Sunday!</p>
+                    <p>Youth Ministry and worship this Saturday!</p>
                 </div>
                 <div className="card">
-                    <p>New Bible study group meeting on Wednesday evenings.</p>
+                    <p>Bible study group meeting in the evenings.</p>
                 </div>
             </section>
         </div>
