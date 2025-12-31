@@ -1,68 +1,51 @@
-// // function Sermons() {
-// //     return (
-// //         <div className="page-container">
-// //             <h1>Recent Sermons</h1>
-// //             <div className="card">
-// //                 <h3>Jesus is Lord</h3>
-// //                 <small>Pastor Nega — 2025-12-24</small>
-// //             </div>
-// //             <div className="card">
-// //                 <h3>Faith and Hope</h3>
-// //                 <small>Pastor Mulgeta — 2025-12-17</small>
-// //             </div>
-// //         </div>
-// //     );
-// // }
-// //
-// // export default Sermons;
+// export default function Sermons() {
+//     return (
+//         <div className="page sermons-page">
+//             <h1>Sermons</h1>
 //
-//
-// // export default function Sermons() {
-// //     return (
-// //         <div className="page sermons-page">
-// //             <h1>Sermons</h1>
-// //
-// //             <div className="sermon-video">
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/_vdbDOWceEg?si=LofHWmsYP5eDsE-n"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/TC3UFylbt4Q?si=JChvrSAoVaDcShu-"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/_ubxnyQPMZ0?si=WcAWM9CIOj_aqB9k"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/25DCjR89Oeo?si=Ea_wJ2HVcCN4gMek"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/qHMXyyQ5rMg?si=tBfFUU3S9S83fVw2"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/l8E5OvI6vv8?si=vYdUXTCLLY7ZuZBo"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //                 <iframe width="560" height="315" src="https://www.youtube.com/embed/7eK47iTw-oQ?si=zdNLszY1pU1R8TyY"
-// //                         title="YouTube video player" frameBorder="0"
-// //                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-// //                         referrerPolicy="strict-origin-when-cross-origin"
-// //                         allowFullScreen></iframe>
-// //             </div>
-// //         </div>
-// //     );
-// // }
+//             <div className="sermon-video">
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/_vdbDOWceEg?si=LofHWmsYP5eDsE-n"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/TC3UFylbt4Q?si=JChvrSAoVaDcShu-"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/_ubxnyQPMZ0?si=WcAWM9CIOj_aqB9k"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/25DCjR89Oeo?si=Ea_wJ2HVcCN4gMek"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/qHMXyyQ5rMg?si=tBfFUU3S9S83fVw2"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/l8E5OvI6vv8?si=vYdUXTCLLY7ZuZBo"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//                 <iframe width="560" height="315" src="https://www.youtube.com/embed/7eK47iTw-oQ?si=zdNLszY1pU1R8TyY"
+//                         title="YouTube video player" frameBorder="0"
+//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+//                         referrerPolicy="strict-origin-when-cross-origin"
+//                         allowFullScreen></iframe>
+//             </div>
+//         </div>
+//     );
+// }
 
+
+//allows you to get the youtube videos dynamically from backend
 import { useEffect, useState } from "react";
 
 export default function Sermons() {

@@ -1,18 +1,72 @@
-function Contact() {
+import { useState } from "react";
+
+export default function Contact() {
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+
+    const [status, setStatus] = useState("");
+
+    function handleChange(e) {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setStatus("Sending...");
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(form),
+            });
+
+            if (!res.ok) throw new Error("Failed");
+
+            setStatus("Message sent successfully 🙏");
+            setForm({ name: "", email: "", message: "" });
+        } catch {
+            setStatus("Failed to send message. Please try again.");
+        }
+    }
+
     return (
-        <div className="page-container">
+        <section className="contact-section">
             <h1>Contact Us</h1>
-            <div className="card">
-                <h3>Church Office</h3>
-                <p>Email: peecc2010@gmail.com</p>
-                <p>Phone: +1 (614) 596-3132</p>
-            </div>
-            <div className="card">
-                <h3>Location</h3>
-                <p>751 Rosehill Rd, Reynoldsburg, Ohio 43068</p>
-            </div>
-        </div>
+
+            <form onSubmit={handleSubmit} className="contact-form">
+                <input
+                    name="name"
+                    placeholder="Your Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                />
+
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="Your Email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                />
+
+                <textarea
+                    name="message"
+                    placeholder="Your Message"
+                    rows="5"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                />
+
+                <button type="submit">Send Message</button>
+                <p>{status}</p>
+            </form>
+        </section>
     );
 }
-
-export default Contact;
