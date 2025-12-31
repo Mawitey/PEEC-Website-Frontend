@@ -18,7 +18,7 @@ export default function Contact() {
         setStatus("Sending...");
 
         try {
-            const res = await fetch("/api/contact", {
+            const res = await fetch("http://18.223.121.64:8080/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
