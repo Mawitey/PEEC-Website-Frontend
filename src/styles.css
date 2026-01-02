@@ -369,7 +369,11 @@ body {
 .page-container {
     max-width: 1050px;
     margin: 0 auto;
+    background-color: #f4f8f5; /* soft light green */
+    padding: 2rem 1.5rem;
+    border-radius: 18px;
 }
+
 
 /* =========================
    NAVBAR
@@ -970,8 +974,153 @@ form {
     font-size: 0.9rem;
 }
 
+.dropdown-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
+/* =========================
+   BUTTON COLOR OVERRIDES
+========================= */
 
+/* Default buttons */
+button,
+.btn,
+.plan-visit-btn {
+    background-color: rgba(2, 41, 48, 1);
+    color: #ffffff;
+    border: none;
+}
+
+/* Hover state */
+button:hover,
+.btn:hover,
+.plan-visit-btn:hover {
+    background-color: rgba(2, 41, 48, 0.88);
+}
+
+/* Sermons specific buttons */
+.btn-live,
+.btn-youtube,
+.btn-primary {
+    background-color: rgba(2, 41, 48, 1);
+    color: #ffffff;
+    border: none;
+}
+
+.btn-live:hover,
+.btn-youtube:hover,
+.btn-primary:hover {
+    background-color: rgba(2, 41, 48, 0.88);
+}
+
+/* Contact form submit button */
+.contact-form button {
+    background-color: rgba(2, 41, 48, 1);
+    color: #ffffff;
+}
+
+.contact-form button:hover {
+    background-color: rgba(2, 41, 48, 0.88);
+}
+
+.home-page .hero {
+    background-color: #f4f8f5;
+}
+
+/* =========================
+   UPDATES – CARD SPACING
+========================= */
+
+section .card {
+    margin-bottom: 1.2rem;
+}
+
+section .card:last-child {
+    margin-bottom: 0;
+}
+
+.dark-section {
+    width: 100%;
+    background-color: #1f2d2b;
+    color: #f1f5f3;
+    padding: 80px 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* space between Facebook & YouTube */
+    margin-top: 10px;
+}
+
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   HOME PAGE HERO – LIGHT GREEN
+========================= */
+
+.home-page .hero {
+    background: #f4f8f5; /* soft light green */
+}
+
+/* Icon buttons for search/clear */
+.btn-icon {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+}
+
+/* Make icons nicely sized */
+.btn-icon svg {
+    font-size: 18px;
+}
+
+/* Center the search bar (desktop + mobile) */
+.sermons-search {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+
+    max-width: 620px;
+    margin: 14px auto 0;
+    width: 100%;
+}
+
+.sermons-search input {
+    flex: 1;
+    min-width: 220px;
+}
+
+/* Icon buttons */
+.btn-icon {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+}
+
+.btn-icon svg {
+    font-size: 18px;
+}
 
 
 

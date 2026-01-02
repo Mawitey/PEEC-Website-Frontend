@@ -3,8 +3,8 @@ function Updates() {
         <div className="page-container">
             <h1>Church Updates</h1>
 
-            {/* Light Section */}
-            <section>
+            {/* Light Section not anymore*/}
+            <section className="dark-section">
                 <h2>Events</h2>
                 <div className="card">
                     <h3>Sunday Worship Service</h3>
@@ -16,7 +16,7 @@ function Updates() {
                 </div>
                 <div className="card">
                     <h3>Bible Study</h3>
-                    <p>Bible study group meeting everyday.</p>
+                    <small>Bible study group meeting everyday.</small>
                 </div>
             </section>
 

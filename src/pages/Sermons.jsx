@@ -164,14 +164,173 @@
 //     );
 // }
 //
+// //
 //
+// import { useEffect, useMemo, useState } from "react";
+//
+// export default function Sermons() {
+//     const [videos, setVideos] = useState([]);
+//     const [loading, setLoading] = useState(true);
+//     const [message, setMessage] = useState("");
+//
+//     // Search
+//     const [query, setQuery] = useState("");
+//     const [submittedQuery, setSubmittedQuery] = useState("");
+//
+//     const channelId = "UCHuklWj-wXBqOhvHgKygbwg";
+//
+//     // ✅ Production-safe (frontend + backend behind same domain)
+//     // const API_URL = "/api/sermons/youtube";
+//     const API_URL = "http://18.223.121.64:8080/api/sermons/youtube";
+//
+//
+//     useEffect(() => {
+//         let cancelled = false;
+//
+//         async function loadSermons() {
+//             setLoading(true);
+//             setMessage("");
+//
+//             try {
+//                 const res = await fetch(API_URL, { cache: "no-store" });
+//                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
+//
+//                 const data = await res.json();
+//                 const items = Array.isArray(data?.items) ? data.items : [];
+//
+//                 if (!cancelled) {
+//                     setVideos(items);
+//                     if (items.length === 0) {
+//                         setMessage("No sermons are available right now.");
+//                     }
+//                 }
+//             } catch (err) {
+//                 console.error("Failed to load sermons:", err);
+//                 if (!cancelled) {
+//                     setVideos([]);
+//                     setMessage(
+//                         "Sermons are temporarily unavailable. Please check back later or visit our YouTube channel."
+//                     );
+//                 }
+//             } finally {
+//                 if (!cancelled) setLoading(false);
+//             }
+//         }
+//
+//         loadSermons();
+//         return () => {
+//             cancelled = true;
+//         };
+//     }, []);
+//
+//     const filteredVideos = useMemo(() => {
+//         const q = submittedQuery.trim().toLowerCase();
+//         if (!q) return videos;
+//
+//         return videos.filter((v) => {
+//             const title = v.snippet?.title?.toLowerCase() || "";
+//             const desc = v.snippet?.description?.toLowerCase() || "";
+//             return title.includes(q) || desc.includes(q);
+//         });
+//     }, [videos, submittedQuery]);
+//
+//     function handleSearch(e) {
+//         e.preventDefault();
+//         setSubmittedQuery(query);
+//     }
+//
+//     function clearSearch() {
+//         setQuery("");
+//         setSubmittedQuery("");
+//     }
+//
+//     return (
+//         <div className="page sermons-page">
+//             {/* HEADER */}
+//             <div className="sermons-header">
+//                 <h1>Latest Sermons</h1>
+//
+//                 <div className="sermons-buttons">
+//                     {/* LIVE BUTTON */}
+//                     <a
+//                         href={`https://www.youtube.com/channel/${channelId}/live`}
+//                         target="_blank"
+//                         rel="noreferrer"
+//                         className="btn btn-live"
+//                     >
+//                         🔴 Watch Live
+//                     </a>
+//
+//                     {/* YOUTUBE CHANNEL BUTTON */}
+//                     <a
+//                         href={`https://www.youtube.com/channel/${channelId}`}
+//                         target="_blank"
+//                         rel="noreferrer"
+//                         className="btn btn-youtube"
+//                     >
+//                         Visit YouTube Channel
+//                     </a>
+//                 </div>
+//
+//                 {/* SEARCH */}
+//                 <form className="sermons-search" onSubmit={handleSearch}>
+//                     <input
+//                         type="text"
+//                         placeholder="Search sermons..."
+//                         value={query}
+//                         onChange={(e) => setQuery(e.target.value)}
+//                     />
+//                     <button type="submit" className="btn btn-primary">
+//                         Search
+//                     </button>
+//                     <button type="button" className="btn" onClick={clearSearch}>
+//                         Clear
+//                     </button>
+//                 </form>
+//             </div>
+//
+//             {/* STATUS / MESSAGE */}
+//             {loading && <p className="status-text">Loading sermons…</p>}
+//
+//             {!loading && message && (
+//                 <div className="notice">
+//                     <p>{message}</p>
+//                 </div>
+//             )}
+//
+//             {submittedQuery && !message && (
+//                 <p className="search-result-text">
+//                     Showing results for <b>{submittedQuery}</b> ({filteredVideos.length})
+//                 </p>
+//             )}
+//
+//             {/* VIDEOS (NO EXTRA LINKS) */}
+//             {!message && (
+//                 <div className="youtube-videos">
+//                     {filteredVideos.map((v, idx) => (
+//                         <div className="video-card" key={v.id?.videoId ?? idx}>
+//                             <h3>{v.snippet?.title || "Sermon"}</h3>
+//                             {v.snippet?.publishedAt && (
+//                                 <p className="video-date">
+//                                     {new Date(v.snippet.publishedAt).toLocaleDateString()}
+//                                 </p>
+//                             )}
+//                         </div>
+//                     ))}
+//                 </div>
+//             )}
+//         </div>
+//     );
+// }
 
 import { useEffect, useMemo, useState } from "react";
+import { FaSearch, FaTimes, FaYoutube } from "react-icons/fa";
 
 export default function Sermons() {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState("");
+    const [loadFailed, setLoadFailed] = useState(false);
 
     // Search
     const [query, setQuery] = useState("");
@@ -179,10 +338,8 @@ export default function Sermons() {
 
     const channelId = "UCHuklWj-wXBqOhvHgKygbwg";
 
-    // ✅ Production-safe (frontend + backend behind same domain)
-    // const API_URL = "/api/sermons/youtube";
+    // const API_URL = "/api/sermons/youtube"; // production
     const API_URL = "http://18.223.121.64:8080/api/sermons/youtube";
-
 
     useEffect(() => {
         let cancelled = false;
@@ -190,6 +347,7 @@ export default function Sermons() {
         async function loadSermons() {
             setLoading(true);
             setMessage("");
+            setLoadFailed(false);
 
             try {
                 const res = await fetch(API_URL, { cache: "no-store" });
@@ -209,8 +367,9 @@ export default function Sermons() {
                 if (!cancelled) {
                     setVideos([]);
                     setMessage(
-                        "Sermons are temporarily unavailable. Please check back later or visit our YouTube channel."
+                        "Sermons are temporarily unavailable. Please check back later."
                     );
+                    setLoadFailed(true);
                 }
             } finally {
                 if (!cancelled) setLoading(false);
@@ -248,10 +407,9 @@ export default function Sermons() {
         <div className="page sermons-page">
             {/* HEADER */}
             <div className="sermons-header">
-                <h1>Latest Sermons</h1>
+                <h1>Sermons</h1>
 
                 <div className="sermons-buttons">
-                    {/* LIVE BUTTON */}
                     <a
                         href={`https://www.youtube.com/channel/${channelId}/live`}
                         target="_blank"
@@ -260,19 +418,9 @@ export default function Sermons() {
                     >
                         🔴 Watch Live
                     </a>
-
-                    {/* YOUTUBE CHANNEL BUTTON */}
-                    <a
-                        href={`https://www.youtube.com/channel/${channelId}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btn btn-youtube"
-                    >
-                        Visit YouTube Channel
-                    </a>
                 </div>
 
-                {/* SEARCH */}
+                {/* SEARCH (always visible, centered) */}
                 <form className="sermons-search" onSubmit={handleSearch}>
                     <input
                         type="text"
@@ -280,21 +428,47 @@ export default function Sermons() {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    <button type="submit" className="btn btn-primary">
-                        Search
+
+                    <button type="submit" className="btn btn-icon" aria-label="Search">
+                        <FaSearch />
                     </button>
-                    <button type="button" className="btn" onClick={clearSearch}>
-                        Clear
+
+                    <button
+                        type="button"
+                        className="btn btn-icon"
+                        onClick={clearSearch}
+                        aria-label="Clear search"
+                    >
+                        <FaTimes />
                     </button>
                 </form>
             </div>
 
-            {/* STATUS / MESSAGE */}
+            {/* STATUS */}
             {loading && <p className="status-text">Loading sermons…</p>}
 
             {!loading && message && (
                 <div className="notice">
                     <p>{message}</p>
+
+                    {loadFailed && (
+                        <div style={{ marginTop: "14px", textAlign: "center" }}>
+                            <a
+                                href={`https://www.youtube.com/channel/${channelId}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="btn btn-youtube"
+                                style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    gap: "10px",
+                                }}
+                            >
+                                <FaYoutube />
+                                Visit YouTube Channel
+                            </a>
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -304,7 +478,7 @@ export default function Sermons() {
                 </p>
             )}
 
-            {/* VIDEOS (NO EXTRA LINKS) */}
+            {/* VIDEOS */}
             {!message && (
                 <div className="youtube-videos">
                     {filteredVideos.map((v, idx) => (
@@ -322,3 +496,4 @@ export default function Sermons() {
         </div>
     );
 }
+
