@@ -45,12 +45,21 @@
 // }
 
 
-//allows you to get the youtube videos dynamically from backend
-import { useEffect, useState } from "react";
+
+
+//includes search button and live broadcast button and loads latest youtube videos dynamically
+import { useEffect, useMemo, useState } from "react";
 
 export default function Sermons() {
     const [videos, setVideos] = useState([]);
     const [status, setStatus] = useState("Loading...");
+
+    // Search states
+    const [query, setQuery] = useState("");
+    const [submittedQuery, setSubmittedQuery] = useState("");
+
+
+    const channelId = "UCHuklWj-wXBqOhvHgKygbwg";
 
     useEffect(() => {
         console.log("Sermons page mounted -> fetching videos...");
@@ -63,7 +72,6 @@ export default function Sermons() {
             })
             .then((data) => {
                 console.log("Full response:", data);
-                console.log("Items:", data.items);
                 setVideos(data.items || []);
                 setStatus(`Loaded ${data.items?.length || 0} videos`);
             })
@@ -73,16 +81,75 @@ export default function Sermons() {
             });
     }, []);
 
+    // Filter videos by search query (title + description)
+    const filteredVideos = useMemo(() => {
+        const q = submittedQuery.trim().toLowerCase();
+        if (!q) return videos;
+
+        return videos.filter((v) => {
+            const title = v.snippet?.title?.toLowerCase() || "";
+            const desc = v.snippet?.description?.toLowerCase() || "";
+            return title.includes(q) || desc.includes(q);
+        });
+    }, [videos, submittedQuery]);
+
+    function handleSearch(e) {
+        e.preventDefault();
+        setSubmittedQuery(query);
+    }
+
+    function clearSearch() {
+        setQuery("");
+        setSubmittedQuery("");
+    }
+
     return (
         <div className="sermons-page">
-            <h1>Latest Sermons</h1>
+            <div className="sermons-header">
+                <h1>Latest Sermons</h1>
+
+                <div className="sermons-actions">
+                    {/* Live button */}
+                    <a
+                        className="live-btn"
+                        href={`https://www.youtube.com/channel/${channelId}/live`}
+                        target="_blank"
+                        rel="noreferrer"
+                        title="Open our current live broadcast"
+                    >
+                        🔴 Live
+                    </a>
+
+                    {/* Search */}
+                    <form className="sermons-search" onSubmit={handleSearch}>
+                        <input
+                            type="text"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder="Search sermons..."
+                        />
+                        <button type="submit">Search</button>
+                        <button type="button" onClick={clearSearch}>
+                            Clear
+                        </button>
+                    </form>
+                </div>
+            </div>
+
             <p>{status}</p>
 
+            {submittedQuery && (
+                <p className="search-result-text">
+                    Showing results for: <b>{submittedQuery}</b> ({filteredVideos.length})
+                </p>
+            )}
+
             <div className="youtube-videos">
-                {videos.map((v) => (
+                {filteredVideos.map((v) => (
                     <div className="video-card" key={v.id?.videoId}>
                         <h3>{v.snippet?.title}</h3>
                         <p>{new Date(v.snippet?.publishedAt).toLocaleString()}</p>
+
                         <a
                             href={`https://www.youtube.com/watch?v=${v.id?.videoId}`}
                             target="_blank"
@@ -96,4 +163,5 @@ export default function Sermons() {
         </div>
     );
 }
+
 

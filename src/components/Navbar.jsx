@@ -19,7 +19,8 @@ function Navbar() {
 
     return (
         <nav className="navbar">
-            <div className="logo">PEEC COLUMBUS</div>
+            <div className="logo">PEEC COLUBUS</div>
+            {/*<div className="header"><h1>PEEC COLUMBUS</h1></div>*/}
 
             <ul className="nav-links">
                 <li className="dropdown" ref={menuRef}>

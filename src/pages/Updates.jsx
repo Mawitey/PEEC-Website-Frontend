@@ -5,7 +5,7 @@ function Updates() {
 
             {/* Light Section */}
             <section>
-                <h2>Upcoming Events</h2>
+                <h2>Events</h2>
                 <div className="card">
                     <h3>Sunday Worship Service</h3>
                     <small>Every Sunday at 12:30 PM</small>
@@ -14,6 +14,10 @@ function Updates() {
                     <h3>Prayer</h3>
                     <small>Everyday, 6:00 AM</small>
                 </div>
+                <div className="card">
+                    <h3>Bible Study</h3>
+                    <p>Bible study group meeting everyday.</p>
+                </div>
             </section>
 
             {/* Dark Section */}
@@ -21,9 +25,6 @@ function Updates() {
                 <h2>Announcements</h2>
                 <div className="card">
                     <p>To be updated....!</p>
-                </div>
-                <div className="card">
-                    <p>Bible study group meeting in the evenings.</p>
                 </div>
             </section>
         </div>
