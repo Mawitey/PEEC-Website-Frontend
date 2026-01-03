@@ -40,13 +40,13 @@ function Navbar() {
                                 <Link to="/giving">Giving</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
-                                <Link to="/about">About</Link>
+                                <Link to="/updates">Updates</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
                                 <Link to="/sermons">Sermons</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
-                                <Link to="/updates">Updates</Link>
+                                <Link to="/about">About</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
                                 <Link to="/contact">Contact</Link>

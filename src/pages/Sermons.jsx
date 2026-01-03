@@ -45,133 +45,16 @@
 // // }
 //
 //
-//
-//
-// //includes search button and live broadcast button and loads latest youtube videos dynamically
+
+//working code with out pictures available on youtube
 // import { useEffect, useMemo, useState } from "react";
-//
-// export default function Sermons() {
-//     const [videos, setVideos] = useState([]);
-//     const [status, setStatus] = useState("Loading...");
-//
-//     // Search states
-//     const [query, setQuery] = useState("");
-//     const [submittedQuery, setSubmittedQuery] = useState("");
-//
-//
-//     const channelId = "UCHuklWj-wXBqOhvHgKygbwg";
-//
-//     useEffect(() => {
-//         console.log("Sermons page mounted -> fetching videos...");
-//
-//         fetch("http://18.223.121.64:8080/api/sermons/youtube")
-//             .then(async (res) => {
-//                 console.log("Fetch status:", res.status);
-//                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
-//                 return res.json();
-//             })
-//             .then((data) => {
-//                 console.log("Full response:", data);
-//                 setVideos(data.items || []);
-//                 setStatus(`Loaded ${data.items?.length || 0} videos`);
-//             })
-//             .catch((err) => {
-//                 console.error("Fetch error:", err);
-//                 setStatus("Failed to load videos");
-//             });
-//     }, []);
-//
-//     // Filter videos by search query (title + description)
-//     const filteredVideos = useMemo(() => {
-//         const q = submittedQuery.trim().toLowerCase();
-//         if (!q) return videos;
-//
-//         return videos.filter((v) => {
-//             const title = v.snippet?.title?.toLowerCase() || "";
-//             const desc = v.snippet?.description?.toLowerCase() || "";
-//             return title.includes(q) || desc.includes(q);
-//         });
-//     }, [videos, submittedQuery]);
-//
-//     function handleSearch(e) {
-//         e.preventDefault();
-//         setSubmittedQuery(query);
-//     }
-//
-//     function clearSearch() {
-//         setQuery("");
-//         setSubmittedQuery("");
-//     }
-//
-//     return (
-//         <div className="sermons-page">
-//             <div className="sermons-header">
-//                 <h1>Latest Sermons</h1>
-//
-//                 <div className="sermons-actions">
-//                     {/* Live button */}
-//                     <a
-//                         className="live-btn"
-//                         href={`https://www.youtube.com/channel/${channelId}/live`}
-//                         target="_blank"
-//                         rel="noreferrer"
-//                         title="Open our current live broadcast"
-//                     >
-//                         🔴 Live
-//                     </a>
-//
-//                     {/* Search */}
-//                     <form className="sermons-search" onSubmit={handleSearch}>
-//                         <input
-//                             type="text"
-//                             value={query}
-//                             onChange={(e) => setQuery(e.target.value)}
-//                             placeholder="Search sermons..."
-//                         />
-//                         <button type="submit">Search</button>
-//                         <button type="button" onClick={clearSearch}>
-//                             Clear
-//                         </button>
-//                     </form>
-//                 </div>
-//             </div>
-//
-//             <p>{status}</p>
-//
-//             {submittedQuery && (
-//                 <p className="search-result-text">
-//                     Showing results for: <b>{submittedQuery}</b> ({filteredVideos.length})
-//                 </p>
-//             )}
-//
-//             <div className="youtube-videos">
-//                 {filteredVideos.map((v) => (
-//                     <div className="video-card" key={v.id?.videoId}>
-//                         <h3>{v.snippet?.title}</h3>
-//                         <p>{new Date(v.snippet?.publishedAt).toLocaleString()}</p>
-//
-//                         <a
-//                             href={`https://www.youtube.com/watch?v=${v.id?.videoId}`}
-//                             target="_blank"
-//                             rel="noreferrer"
-//                         >
-//                             Watch on YouTube
-//                         </a>
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// }
-//
-// //
-//
-// import { useEffect, useMemo, useState } from "react";
+// import { FaSearch, FaTimes, FaYoutube } from "react-icons/fa";
 //
 // export default function Sermons() {
 //     const [videos, setVideos] = useState([]);
 //     const [loading, setLoading] = useState(true);
 //     const [message, setMessage] = useState("");
+//     const [loadFailed, setLoadFailed] = useState(false);
 //
 //     // Search
 //     const [query, setQuery] = useState("");
@@ -179,10 +62,8 @@
 //
 //     const channelId = "UCHuklWj-wXBqOhvHgKygbwg";
 //
-//     // ✅ Production-safe (frontend + backend behind same domain)
-//     // const API_URL = "/api/sermons/youtube";
+//     // const API_URL = "/api/sermons/youtube"; // production
 //     const API_URL = "http://18.223.121.64:8080/api/sermons/youtube";
-//
 //
 //     useEffect(() => {
 //         let cancelled = false;
@@ -190,6 +71,7 @@
 //         async function loadSermons() {
 //             setLoading(true);
 //             setMessage("");
+//             setLoadFailed(false);
 //
 //             try {
 //                 const res = await fetch(API_URL, { cache: "no-store" });
@@ -209,8 +91,9 @@
 //                 if (!cancelled) {
 //                     setVideos([]);
 //                     setMessage(
-//                         "Sermons are temporarily unavailable. Please check back later or visit our YouTube channel."
+//                         "Sermons are temporarily unavailable. Please check back later."
 //                     );
+//                     setLoadFailed(true);
 //                 }
 //             } finally {
 //                 if (!cancelled) setLoading(false);
@@ -248,10 +131,9 @@
 //         <div className="page sermons-page">
 //             {/* HEADER */}
 //             <div className="sermons-header">
-//                 <h1>Latest Sermons</h1>
+//                 <h1>Sermons</h1>
 //
 //                 <div className="sermons-buttons">
-//                     {/* LIVE BUTTON */}
 //                     <a
 //                         href={`https://www.youtube.com/channel/${channelId}/live`}
 //                         target="_blank"
@@ -260,19 +142,9 @@
 //                     >
 //                         🔴 Watch Live
 //                     </a>
-//
-//                     {/* YOUTUBE CHANNEL BUTTON */}
-//                     <a
-//                         href={`https://www.youtube.com/channel/${channelId}`}
-//                         target="_blank"
-//                         rel="noreferrer"
-//                         className="btn btn-youtube"
-//                     >
-//                         Visit YouTube Channel
-//                     </a>
 //                 </div>
 //
-//                 {/* SEARCH */}
+//                 {/* SEARCH (always visible, centered) */}
 //                 <form className="sermons-search" onSubmit={handleSearch}>
 //                     <input
 //                         type="text"
@@ -280,21 +152,47 @@
 //                         value={query}
 //                         onChange={(e) => setQuery(e.target.value)}
 //                     />
-//                     <button type="submit" className="btn btn-primary">
-//                         Search
+//
+//                     <button type="submit" className="btn btn-icon" aria-label="Search">
+//                         <FaSearch />
 //                     </button>
-//                     <button type="button" className="btn" onClick={clearSearch}>
-//                         Clear
+//
+//                     <button
+//                         type="button"
+//                         className="btn btn-icon"
+//                         onClick={clearSearch}
+//                         aria-label="Clear search"
+//                     >
+//                         <FaTimes />
 //                     </button>
 //                 </form>
 //             </div>
 //
-//             {/* STATUS / MESSAGE */}
+//             {/* STATUS */}
 //             {loading && <p className="status-text">Loading sermons…</p>}
 //
 //             {!loading && message && (
 //                 <div className="notice">
 //                     <p>{message}</p>
+//
+//                     {loadFailed && (
+//                         <div style={{ marginTop: "14px", textAlign: "center" }}>
+//                             <a
+//                                 href={`https://www.youtube.com/channel/${channelId}`}
+//                                 target="_blank"
+//                                 rel="noreferrer"
+//                                 className="btn btn-youtube"
+//                                 style={{
+//                                     display: "inline-flex",
+//                                     alignItems: "center",
+//                                     gap: "10px",
+//                                 }}
+//                             >
+//                                 <FaYoutube />
+//                                 Visit YouTube Channel
+//                             </a>
+//                         </div>
+//                     )}
 //                 </div>
 //             )}
 //
@@ -304,7 +202,7 @@
 //                 </p>
 //             )}
 //
-//             {/* VIDEOS (NO EXTRA LINKS) */}
+//             {/* VIDEOS */}
 //             {!message && (
 //                 <div className="youtube-videos">
 //                     {filteredVideos.map((v, idx) => (
@@ -322,9 +220,12 @@
 //         </div>
 //     );
 // }
+//
 
+
+//TODO for future search bar to be in geez and english
 import { useEffect, useMemo, useState } from "react";
-import { FaSearch, FaTimes, FaYoutube } from "react-icons/fa";
+import { FaSearch, FaTimes, FaYoutube, FaPlay } from "react-icons/fa";
 
 export default function Sermons() {
     const [videos, setVideos] = useState([]);
@@ -336,11 +237,17 @@ export default function Sermons() {
     const [query, setQuery] = useState("");
     const [submittedQuery, setSubmittedQuery] = useState("");
 
+    // Selected video
+    const [selectedVideoId, setSelectedVideoId] = useState(null);
+
     const channelId = "UCHuklWj-wXBqOhvHgKygbwg";
 
     // const API_URL = "/api/sermons/youtube"; // production
     const API_URL = "http://18.223.121.64:8080/api/sermons/youtube";
 
+    /* =========================
+       LOAD SERMONS
+    ========================= */
     useEffect(() => {
         let cancelled = false;
 
@@ -358,6 +265,11 @@ export default function Sermons() {
 
                 if (!cancelled) {
                     setVideos(items);
+
+                    // Auto-select first video
+                    const firstId = items?.[0]?.id?.videoId || null;
+                    setSelectedVideoId(firstId);
+
                     if (items.length === 0) {
                         setMessage("No sermons are available right now.");
                     }
@@ -366,9 +278,8 @@ export default function Sermons() {
                 console.error("Failed to load sermons:", err);
                 if (!cancelled) {
                     setVideos([]);
-                    setMessage(
-                        "Sermons are temporarily unavailable. Please check back later."
-                    );
+                    setSelectedVideoId(null);
+                    setMessage("Sermons are temporarily unavailable. Please check back later.");
                     setLoadFailed(true);
                 }
             } finally {
@@ -382,6 +293,18 @@ export default function Sermons() {
         };
     }, []);
 
+    /* =========================
+       AUTO-RESTORE WHEN INPUT CLEARED ✅
+    ========================= */
+    useEffect(() => {
+        if (query.trim() === "") {
+            setSubmittedQuery("");
+        }
+    }, [query]);
+
+    /* =========================
+       FILTERED VIDEOS
+    ========================= */
     const filteredVideos = useMemo(() => {
         const q = submittedQuery.trim().toLowerCase();
         if (!q) return videos;
@@ -393,6 +316,19 @@ export default function Sermons() {
         });
     }, [videos, submittedQuery]);
 
+    // Keep selected video valid after filtering
+    useEffect(() => {
+        if (!filteredVideos.length) return;
+
+        const stillExists = filteredVideos.some(
+            (v) => v?.id?.videoId === selectedVideoId
+        );
+
+        if (!stillExists) {
+            setSelectedVideoId(filteredVideos[0]?.id?.videoId || null);
+        }
+    }, [filteredVideos, selectedVideoId]);
+
     function handleSearch(e) {
         e.preventDefault();
         setSubmittedQuery(query);
@@ -401,6 +337,18 @@ export default function Sermons() {
     function clearSearch() {
         setQuery("");
         setSubmittedQuery("");
+    }
+
+    function bestThumbUrl(snippet) {
+        const t = snippet?.thumbnails;
+        return (
+            t?.maxres?.url ||
+            t?.standard?.url ||
+            t?.high?.url ||
+            t?.medium?.url ||
+            t?.default?.url ||
+            ""
+        );
     }
 
     return (
@@ -420,7 +368,7 @@ export default function Sermons() {
                     </a>
                 </div>
 
-                {/* SEARCH (always visible, centered) */}
+                {/* SEARCH */}
                 <form className="sermons-search" onSubmit={handleSearch}>
                     <input
                         type="text"
@@ -472,28 +420,59 @@ export default function Sermons() {
                 </div>
             )}
 
-            {submittedQuery && !message && (
-                <p className="search-result-text">
-                    Showing results for <b>{submittedQuery}</b> ({filteredVideos.length})
-                </p>
+            {/* PLAYER */}
+            {!message && selectedVideoId && (
+                <section className="sermons-player">
+                    <div className="video-wrapper">
+                        <iframe
+                            src={`https://www.youtube.com/embed/${selectedVideoId}`}
+                            title="Sermon Video Player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </section>
             )}
 
-            {/* VIDEOS */}
+            {/* THUMBNAILS */}
             {!message && (
-                <div className="youtube-videos">
-                    {filteredVideos.map((v, idx) => (
-                        <div className="video-card" key={v.id?.videoId ?? idx}>
-                            <h3>{v.snippet?.title || "Sermon"}</h3>
-                            {v.snippet?.publishedAt && (
-                                <p className="video-date">
-                                    {new Date(v.snippet.publishedAt).toLocaleDateString()}
-                                </p>
-                            )}
-                        </div>
-                    ))}
+                <div className="sermon-thumbs">
+                    {filteredVideos.map((v, idx) => {
+                        const vid = v?.id?.videoId;
+                        const title = v?.snippet?.title || "Sermon";
+                        const date = v?.snippet?.publishedAt
+                            ? new Date(v.snippet.publishedAt).toLocaleDateString()
+                            : "";
+                        const thumb = bestThumbUrl(v?.snippet);
+                        const active = vid === selectedVideoId;
+
+                        return (
+                            <button
+                                key={vid ?? idx}
+                                className={`thumb-card ${active ? "active" : ""}`}
+                                onClick={() => vid && setSelectedVideoId(vid)}
+                            >
+                                <div className="thumb-image">
+                                    {thumb && (
+                                        <img src={thumb} alt={title} loading="lazy" />
+                                    )}
+                                    <div className="thumb-play">
+                                        <FaPlay />
+                                    </div>
+                                </div>
+
+                                <div className="thumb-meta">
+                                    <h3>{title}</h3>
+                                    {date && <p className="thumb-date">{date}</p>}
+                                </div>
+                            </button>
+                        );
+                    })}
                 </div>
             )}
         </div>
     );
 }
+
 
