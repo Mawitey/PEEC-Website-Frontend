@@ -17,10 +17,10 @@ function App() {
                 <main className="content">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/giving" element={<Giving />} />
                         <Route path="/about" element={<About />} />
                         <Route path="/sermons" element={<Sermons />} />
                         <Route path="/updates" element={<Updates />} />
-                        <Route path="/giving" element={<Giving />} />
                         <Route path="/contact" element={<Contact />} />
                     </Routes>
 

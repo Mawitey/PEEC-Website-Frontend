@@ -24,7 +24,18 @@ function Updates() {
             <section className="dark-section">
                 <h2>Announcements</h2>
                 <div className="card">
-                    <p>To be updated....!</p>
+                    <p>Special announcement for our church family:</p>
+
+                    {/* YouTube Embed */}
+                    <div className="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/1kszb3E_ge4"
+                            title="Church Announcement Video"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
                 </div>
             </section>
         </div>

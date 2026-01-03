@@ -340,8 +340,13 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
+
+    overflow-x: hidden;   /* keep sideways hidden */
+    overflow-y: visible;  /* IMPORTANT: allow sticky */
 }
+
+
+
 
 /* Cross watermark background (calm + subtle) */
 .page::before {
@@ -363,35 +368,50 @@ body {
 .content {
     flex: 1;
     padding: 2rem 1.25rem;
+    padding-top: 90px; /* adjust if needed */
+
 }
 
 /* Container */
 .page-container {
     max-width: 1050px;
     margin: 0 auto;
-    background-color: #f4f8f5; /* soft light green */
-    padding: 2rem 1.5rem;
-    border-radius: 18px;
 }
-
 
 /* =========================
-   NAVBAR
+   NAVBAR - to return the header to the way it was
 ========================= */
 
+/*.navbar {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    z-index: 10000;*/
+/*    z-index: 50;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    padding: 14px 24px;*/
+/*    margin: 0;*/
+/*    background: rgba(2, 41, 48, 1); !* modern glass-dark *!*/
+/*    backdrop-filter: blur(10px);*/
+/*    border-bottom: 1px solid rgba(255,255,255,0.08);*/
+/*}*/
+
 .navbar {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 50;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    background: rgba(2, 41, 48, 1);
+
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* this keeps menu on right */
     align-items: center;
-    padding: 14px 24px;
-    margin: 0;
-    background: rgba(2, 41, 48, 1); /* modern glass-dark */
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+
 
 .logo {
     font-size: 1.15rem;
@@ -1121,6 +1141,12 @@ section .card:last-child {
 .btn-icon svg {
     font-size: 18px;
 }
+
+.page h1,
+.page h2 {
+    text-align: center;
+}
+
 
 
 

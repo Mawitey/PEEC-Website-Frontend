@@ -37,6 +37,9 @@ function Navbar() {
                                 <Link to="/">Home</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
+                                <Link to="/giving">Giving</Link>
+                            </li>
+                            <li onClick={() => setOpen(false)}>
                                 <Link to="/about">About</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
@@ -44,9 +47,6 @@ function Navbar() {
                             </li>
                             <li onClick={() => setOpen(false)}>
                                 <Link to="/updates">Updates</Link>
-                            </li>
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/giving">Giving</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
                                 <Link to="/contact">Contact</Link>
