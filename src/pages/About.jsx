@@ -6,12 +6,12 @@ function About() {
             </div>
 
             <section className="dark-section">
-                <div className="page-container">
+                {/*<div className="page-container">*/}
                     <h2>Our Vision</h2>
                     <p>
                         To spread the love of Jesus and make disciples in every neighborhood.
                     </p>
-                </div>
+                {/*</div>*/}
             </section>
 
             <section>
@@ -25,13 +25,13 @@ function About() {
             </section>
 
             <section className="dark-section">
-                <div className="page-container">
+                {/*<div className="page-container">*/}
                     <h2>Our History</h2>
                     <p>
                         Our church has grown to serve hundreds of families in
                         the community, providing worship, fellowship, and service programs.
                     </p>
-                </div>
+                {/*</div>*/}
             </section>
         </>
     );
