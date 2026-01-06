@@ -24,13 +24,6 @@ function Home() {
                     "Our pastor is devoted to preaching the Gospel of Jesus Christ, shepherding the church, and leading with prayer and humility.",
             },
             {
-                img: churchSingers1,
-                role: "Pastor",
-                name: "Mulgeta",
-                notes:
-                    "Our pastor is devoted to preaching the Gospel of Jesus Christ, shepherding the church, and leading with prayer and humility.",
-            },
-            {
                 img: churchSingers2,
                 role: "Elder",
                 name: "Tesfu",
