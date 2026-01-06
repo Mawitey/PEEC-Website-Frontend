@@ -13,4 +13,4 @@ Also the code was deployed in S3 and cloudfront in aws. For email service SES, A
 
 
 ### Next steps
-- Enhance the website by accepting comments from users.
+Enhance the website by accepting comments from users.
