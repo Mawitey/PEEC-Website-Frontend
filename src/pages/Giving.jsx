@@ -1,7 +1,7 @@
 function Giving() {
     return (
         <div className="page-container">
-            <h1>Giving</h1>
+            <h1>Give Now</h1>
 
             <section className="dark-section">
                 <div className="card">

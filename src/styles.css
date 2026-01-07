@@ -1368,3 +1368,52 @@ section .card:last-child {
     justify-content: center;
     padding: 12px 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.home-actions {
+    text-align: center;
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* Make the new buttons look EXACTLY like plan-visit-btn */
+.home-action-btn {
+    background-color: #1f2d2b;
+    color: #ffffff;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    border-radius: 30px; /* same pill shape */
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    /* important so <a> (Link) can look like a button too */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-action-btn:hover {
+    background-color: #16211f;
+    transform: translateY(-2px);
+}
+
+

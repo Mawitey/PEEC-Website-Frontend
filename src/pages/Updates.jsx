@@ -31,7 +31,7 @@ function Updates() {
                 </div>
                 <div className="card">
                     <h3>Prayer</h3>
-                    <small>Everyday, 6:00 AM</small>
+                    <small>Everyday, 6:00 - 7:00 AM</small>
                 </div>
                 <div className="card">
                     <h3>Bible Study</h3>
