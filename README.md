@@ -1,41 +1,16 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Philadelpia Eritrean Evangelical Church - Frontend
 
-Currently, two official plugins are available:
+###  Problem statement
+To design Web Site for the church
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+###  Technology Used
+HTML, react
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Results
+The code fetches data from backend using Youtube key and displays it in browser and connects with backend API send email. 
+Also the code was deployed in S3 and cloudfront in aws. For email service SES, API gateway and lambda is used, for domain route S3 is used
 
 
-CREATE TABLE sermon (
-id SERIAL PRIMARY KEY,
-title VARCHAR(255) NOT NULL,
-description TEXT,
-video_url VARCHAR(255),
-date_uploaded TIMESTAMP
-);
-
-CREATE TABLE event (
-id SERIAL PRIMARY KEY,
-name VARCHAR(255),
-description TEXT,
-start_time TIMESTAMP,
-end_time TIMESTAMP,
-location VARCHAR(255)
-);
-
-CREATE TABLE prayer_request (
-id SERIAL PRIMARY KEY,
-name VARCHAR(255),
-message TEXT,
-submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+### Next steps
+Enhance the website by accepting comments from users.
