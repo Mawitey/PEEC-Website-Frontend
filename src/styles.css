@@ -533,7 +533,7 @@ form {
     margin: 0 auto;
     font-size: 1.2rem;
     line-height: 1.7;
-    text-align: center;
+    text-align: left;
 }
 
 /* MOBILE RESPONSIVE */
@@ -1369,20 +1369,6 @@ section .card:last-child {
     padding: 12px 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .home-actions {
     text-align: center;
     margin-top: 40px;
@@ -1415,5 +1401,4 @@ section .card:last-child {
     background-color: #16211f;
     transform: translateY(-2px);
 }
-
 
