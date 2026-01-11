@@ -30,7 +30,7 @@ function Updates() {
                     <small>Every Sunday at 12:30 PM</small>
                 </div>
                 <div className="card">
-                    <h3>Prayer</h3>
+                    <h3>Morning Prayer</h3>
                     <small>Everyday, 6:00 - 7:00 AM</small>
                 </div>
                 <div className="card">

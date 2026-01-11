@@ -109,9 +109,6 @@ function About() {
                         congregation, prompting the search for a larger meeting place. Leaders were appointed to serve as elders
                         of the fellowship.
                         <h3>Important Milestones</h3>
-                        As the fellowship continued to grow and multiply, the homes that once hosted the gatherings could no
-                        longer accommodate the congregation, prompting the search for a larger meeting place. During this
-                        period, leaders were appointed to serve as elders of the fellowship.
                         In September 2010, the church officially began holding its services at the Bethany Lutheran Church
                         building, where it continued to meet until the end of 2015. Beginning in early 2016, the church started
                         holding its services at The Cross Walk Church building.
@@ -127,7 +124,7 @@ function About() {
                         affairs of the congregation. Pastor Negga Woldesemaet has been serving the Lord since his childhood in
                         Eritrea and Ethiopia. He holds a Master of Divinity degree from Asbury Theological Seminary.
                         In 2021, the church recognized and ordained Pastor Mulugeta Megisteab as a church teacher, affirming
-                        the grace God has given him to teach the Word of God. During the same period, Evangelist Paul
+                        the grace God has given him to teach the Word of God. During the same period, Evangelist Paulos
                         Gebremariam was recognized and ordained as an evangelist, acknowledging God’s call upon his life to
                         proclaim the gospel.
 
