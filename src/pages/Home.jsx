@@ -7,6 +7,7 @@ import elder1 from "../images/Elder1.jpg";
 import elder2 from "../images/Elder2.jpg";
 import elder3 from "../images/Elder3.jpg";
 import elder4 from "../images/Elder4.jpg";
+import elder5 from "../images/Elder5.jpg";
 
 function Home() {
     const [showMap, setShowMap] = useState(false);
@@ -56,6 +57,13 @@ function Home() {
                 name: "Teklit Abraham",
                 notes:
                     "Committed to prayer, outreach, and caring for the spiritual needs of the church family.",
+            },
+            {
+                img: elder5,
+                role: "Elder",
+                name: "Efrem Buru",
+                notes:
+                    "Dedicated to serving with humility, guiding the congregation, and strengthening faith through prayer and support.",
             },
         ],
         []
@@ -128,9 +136,9 @@ function Home() {
                 <section className="hero">
                     <h1>Welcome to Our Church</h1>
 
-                    <title>Eritrean Pentecostal Church in Columbus, Ohio | PEEC</title>
+                    <title>Philadelphia Eritrean Evangelical Church in Columbus Ohio | PEEC</title>
                     <meta name="description"
-                          content="PEEC is an Eritrean Pentecostal Church serving the Eritrean community in Columbus, Ohio. Join us for worship, prayer, and fellowship." />
+                          content="PEEC is a non-denominational church serving the Eritrean community in Columbus Ohio. Join us for worship, prayer, and fellowship." />
 
                     <div className="hero-block">
                         <img

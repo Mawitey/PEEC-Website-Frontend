@@ -211,6 +211,24 @@ section {
     color: #f9fafb;
 }
 
+/* Ensure headings inside about-section on dark backgrounds match the about-card text
+   (this makes the Vision section use a single, consistent text color). */
+.dark-section.about-section .about-header h2 {
+  color: var(--text);
+}
+
+/* Force entire About section on dark background to use the site text color so heading + card match */
+.dark-section.about-section {
+  color: var(--text) !important;
+}
+
+/* Ensure headings inside keep the color and don't use the earlier white rule */
+.dark-section.about-section h1,
+.dark-section.about-section h2,
+.dark-section.about-section h3 {
+  color: var(--text) !important;
+}
+
 /* Shared card */
 .card,
 .sermon-card,
@@ -281,6 +299,29 @@ button.primary, .btn.primary {
 
 button.primary:hover, .btn.primary:hover {
     background: rgba(37, 99, 235, 0.18);
+}
+
+/* Scoped smaller controls for flyer actions and the Give button
+   Keeps global button sizing intact while making these specific buttons more compact. */
+.flyer-buttons .building-btn,
+.flyer-buttons .secondary-btn,
+.flyer-buttons .primary-btn,
+.building-btn.give-btn,
+.give-btn {
+  padding: 0.45rem 0.8rem; /* slightly reduced vertical+horizontal padding */
+  font-size: 0.85rem;     /* slightly smaller text */
+}
+
+/* For very small screens make sure buttons stay tappable but balanced */
+@media (max-width: 420px) {
+  .flyer-buttons .building-btn,
+  .flyer-buttons .secondary-btn,
+  .flyer-buttons .primary-btn,
+  .building-btn.give-btn,
+  .give-btn {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.9rem;
+  }
 }
 
 /* =========================
@@ -1481,4 +1522,605 @@ section .card:last-child {
 
 .contact-icon svg {
     color: #3a7f5d;
+}
+
+.dropdown-button {
+    font-size: 1.1rem;        /* bigger text */
+    padding: 12px 18px;       /* more clickable area */
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.nav-links {
+    margin-left: auto;   /* 🔥 this pushes menu to the right */
+    list-style: none;
+    display: flex;
+}
+
+.building-page {
+  font-family: "Poppins", sans-serif;
+  color: #24352f;
+  background: #ffffff;
+}
+
+.building-hero {
+  background: #e9f1ed;
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.building-hero-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.building-label {
+  color: #4f7d68;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.building-hero h1 {
+  font-size: 44px;
+  margin: 15px 0;
+  color: #24352f;
+}
+
+.building-hero p {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.building-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 13px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.primary-btn {
+  background: #4f7d68;
+  color: white;
+}
+
+.primary-btn:hover {
+  background: #3f6655;
+}
+
+.secondary-btn {
+  background: white;
+  color: #4f7d68;
+  border: 1px solid #4f7d68;
+}
+
+.secondary-btn:hover {
+  background: #f4f8f6;
+}
+
+.building-section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.building-section h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #24352f;
+}
+
+.building-section p {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.impact-grid {
+  max-width: 1050px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.impact-grid div {
+  background: #f7faf8;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.impact-grid h3 {
+  color: #4f7d68;
+  margin-bottom: 10px;
+}
+
+.goal-box,
+.give-box {
+  background: #f7faf8;
+  border-radius: 20px;
+  padding: 45px 25px;
+}
+
+.goal-numbers {
+  margin-top: 20px;
+}
+
+.goal-numbers p {
+  margin: 10px 0;
+}
+
+.flyer-box {
+  max-width: 760px;
+  margin: 35px auto 0;
+  padding: 28px;
+  border-radius: 18px;
+  background: #eef4f1;
+  text-align: center;
+}
+
+.flyer-box h3 {
+  margin-bottom: 12px;
+}
+
+.give-options {
+  margin: 25px 0;
+  line-height: 2;
+}
+
+.give-btn {
+  margin-top: 10px;
+}
+
+.giving-container {
+  margin-top: 35px;
+}
+
+.giving-options-grid {
+  margin-top: 20px;
+  display: grid;
+  gap: 18px;
+}
+
+.giving-options-grid .card {
+  text-align: left;
+}
+
+.giving-options-grid ul {
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.secure-note {
+  margin-top: 25px;
+  font-size: 0.9rem !important;
+  color: #5c6f67;
+}
+
+#vision,
+#give {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  .building-hero {
+    padding: 65px 18px;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .building-page .building-btn {
+    padding: 8px 16px !important;
+    font-size: 0.88rem !important;
+  }
+}
+
+/* flyer button layout: space between Open/Download buttons */
+.flyer-buttons {
+  display: flex;
+  gap: 12px; /* space between buttons */
+  justify-content: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* ensure buttons inside flyer-buttons follow inline sizing */
+.flyer-buttons .home-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* About page content wrapper: ensure inner content is left-aligned so lists align with paragraphs */
+.about-section .content-wrapper {
+  text-align: left;
+  max-width: 820px;
+  margin: 0 auto; /* center the inner column but keep its contents left-aligned */
+}
+
+/* About page lists: show bullets and align them with the paragraph text */
+.about-section .content-list,
+.about-section ul {
+  list-style: disc;                /* show bullets */
+  list-style-position: outside;    /* keep the bullet markers outside the content box */
+  padding-left: 1.25rem;           /* standard indent so bullets align with paragraph text */
+  margin: 12px 0;                  /* small vertical spacing */
+  text-align: left;                /* keep list items left-aligned inside centered sections */
+  display: block;
+}
+
+.about-section .content-list li {
+  margin-bottom: 8px;              /* space between items */
+}
+
+/* =========================
+   ABOUT PAGE — STYLING ENHANCEMENTS
+   Scoped to .about-section/.about-card to avoid global side effects
+========================= */
+
+.page-container .subtitle {
+  color: rgba(31, 45, 41, 0.85);
+  font-size: 1.05rem;
+  margin-top: 8px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #34534a;
+}
+
+.about-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,252,251,0.96));
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 10px 30px rgba(15, 23, 20, 0.06);
+  border: 1px solid rgba(17,24,19,0.06);
+  margin-top: 18px;
+}
+
+/* tighten the inner column and add breathing room */
+.about-section .content-wrapper {
+  padding: 6px 2px 2px 2px;
+}
+
+.read-more-btn {
+  margin-top: 12px;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-weight: 600;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.read-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(15, 23, 20, 0.06);
+}
+
+.read-more-content {
+  margin-top: 16px;
+  animation: fadeInUp 220ms ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Verse highlight */
+.about-section .verse {
+  border-left: 4px solid #4f7d68;
+  background: rgba(79,125,104,0.04);
+  padding: 12px 14px;
+  margin-top: 12px;
+  border-radius: 6px;
+  color: #21342f;
+  font-style: italic;
+}
+
+/* Content lists: slightly larger line-height for readability */
+.about-section ul.content-list,
+.about-section ul.faith-list {
+  line-height: 1.6;
+}
+
+/* Faith list: two columns on larger screens */
+.about-section ul.faith-list {
+  column-count: 2;
+  column-gap: 36px;
+  list-style-position: outside;
+}
+
+.about-section ul.faith-list li {
+  break-inside: avoid-column;
+  margin-bottom: 10px;
+}
+
+/* History content: make headings stand out */
+.history-content .content-wrapper h3 {
+  color: #1f2d2b;
+  margin-top: 14px;
+  margin-bottom: 8px;
+}
+
+/* Responsive: single column faith list on mobile */
+@media (max-width: 820px) {
+  .about-section ul.faith-list {
+    column-count: 1;
+  }
+
+  .about-card {
+    padding: 18px;
+  }
+
+  .page-container .subtitle {
+    font-size: 1rem;
+    padding: 0 12px;
+  }
+}
+
+/* Small adjustment so read-more buttons align with section headings */
+.about-section > h2 {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.about-section .read-more-btn {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* End About page enhancements */
+
+/* About page read buttons: pill style, accessible states */
+.about-read-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(20,92,71,0.12);
+  background: rgba(255,255,255,0.96);
+  color: #145c47; /* church green */
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.about-read-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20,92,71,0.06);
+}
+
+.about-read-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(79,125,104,0.12);
+}
+
+/* When expanded, invert colors to show active state */
+.about-read-btn[aria-expanded="true"] {
+  background: #145c47;
+  color: #fff;
+  border-color: #145c47;
+}
+
+/* small caret spacing */
+.about-read-btn span[aria-hidden] {
+  font-size: 0.86rem;
+  line-height: 1;
+}
+
+/* keep the read-more button compact on small screens */
+@media (max-width: 420px) {
+  .about-read-btn {
+    padding: 7px 12px;
+    font-size: 0.95rem;
+    gap: 6px;
+  }
+}
+
+/* Header wrapper for About sections: aligns H2 and button */
+.about-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.about-header h2 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+/* On small screens stack heading and button for better spacing */
+@media (max-width: 520px) {
+  .about-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .about-header .about-read-btn {
+    align-self: flex-end;
+  }
+}
+
+/* Dark section specific button colors so they contrast on dark background */
+.dark-section .about-read-btn {
+  /* translucent light button with pale text */
+  background: rgba(255,255,255,0.06);
+  color: rgba(249,249,249,0.95);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.dark-section .about-read-btn:hover {
+  background: rgba(255,255,255,0.09);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+}
+
+/* When a dark-section button is expanded, make it a solid light button with dark text to indicate active state */
+.dark-section .about-read-btn[aria-expanded="true"] {
+  background: #ffffff;
+  color: #1f2d2b; /* dark text to remain readable */
+  border-color: rgba(0,0,0,0.06);
+}
+
+/* When an about-card appears inside a dark section (light card on dark bg),
+   ensure its text is the site's normal dark color so all content is readable
+   and consistent (fixes mixed-color issue in the Vision section). */
+.dark-section .about-card {
+  color: var(--text);
+}
+
+/* Ensure verse highlight uses the same color (it had an explicit different color) */
+.dark-section.about-section .verse {
+  color: var(--text) !important;
+  background: rgba(250,250,250,0.6); /* subtle light background so verse still reads */
+  border-left-color: rgba(17,24,39,0.08);
+}
+
+/* Re-apply button-specific visual rules so the previous generic color rule doesn't affect buttons */
+.dark-section.about-section .about-read-btn {
+  background: rgba(255,255,255,0.06);
+  color: rgba(249,249,249,0.95);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.dark-section.about-section .about-read-btn[aria-expanded="true"] {
+  background: #ffffff;
+  color: #1f2d2b;
+}
+
+/* Make all text white inside dark about sections */
+.dark-section.about-section :where(h1,h2,h3,p,ul,ol,li,em,strong,span,a,blockquote) {
+  color: #ffffff !important;
+}
+
+/* Keep buttons unaffected */
+.dark-section.about-section :where(button, .about-read-btn) {
+  color: inherit; /* let button rules control color */
+}
+
+.dark-section.about-section .verse {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.08);
+  border-left-color: rgba(255,255,255,0.25);
+}
+
+/* FINAL FIX: dark About sections must have white text */
+.dark-section.about-section {
+  background-color: rgba(2, 41, 48, 1) !important;
+  color: #ffffff !important;
+}
+
+.dark-section.about-section h1,
+.dark-section.about-section h2,
+.dark-section.about-section h3,
+.dark-section.about-section p,
+.dark-section.about-section li,
+.dark-section.about-section em,
+.dark-section.about-section strong {
+  color: #ffffff !important;
+}
+
+/* Keep the opened content readable on dark background */
+.dark-section.about-section .about-card,
+.dark-section.about-section .read-more-content,
+.dark-section.about-section .content-wrapper {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Verse on dark section */
+.dark-section.about-section .verse {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.08) !important;
+  border-left-color: rgba(255,255,255,0.35) !important;
+}
+
+/* Button stays readable */
+.dark-section.about-section .about-read-btn {
+  background: #ffffff !important;
+  color: #1f2d2b !important;
+}
+
+.announcement-flyer {
+  width: 100%;
+  max-width: 700px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+}
+
+.video-wrapper {
+  margin-top: 20px;
+}
+
+.card h3 {
+  text-align: center;
+  font-size: 2rem;
+  color: #1f2d2b;
+  margin-bottom: 15px;
+}
+
+.card p {
+  max-width: 800px;
+  margin: 0 auto 25px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+.announcement-flyer {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.event-card {
+  text-align: center;
+  padding: 25px;
+}
+
+.event-card h3 {
+  margin-bottom: 10px;
+  color: #1f2d2b;
+}
+
+.event-card p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
 }

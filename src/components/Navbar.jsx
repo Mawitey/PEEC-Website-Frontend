@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// Navbar component with dropdown menu
 function Navbar() {
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
@@ -19,7 +20,7 @@ function Navbar() {
 
     return (
         <nav className="navbar">
-            <div className="logo">PEEC COLUBUS</div>
+            <div className="logo">Philadelphia Eritrean Evangelical Church</div>
             {/*<div className="header"><h1>PEEC COLUMBUS</h1></div>*/}
 
             <ul className="nav-links">
@@ -37,7 +38,7 @@ function Navbar() {
                                 <Link to="/">Home</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
-                                <Link to="/giving">Giving</Link>
+                                <Link to="/giving">Building Fund</Link>
                             </li>
                             <li onClick={() => setOpen(false)}>
                                 <Link to="/updates">Updates</Link>

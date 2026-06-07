@@ -3,7 +3,7 @@ import { FaFacebook, FaYoutube } from "react-icons/fa";
 function Footer() {
     return (
         <footer className="footer">
-            <p>© PEEC. All rights reserved.</p>
+            <p>© PEEC Columbus Ohio. All rights reserved.</p>
 
             <div className="footer-links">
                 <a
