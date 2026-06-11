@@ -1,65 +1,53 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../images/LogoT.webp";
 
-// Navbar component with dropdown menu
 function Navbar() {
-    const [open, setOpen] = useState(false);
-    const menuRef = useRef(null);
+  const [open, setOpen] = useState(false);
 
-    // Close menu when clicking outside
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setOpen(false);
-            }
-        }
+  return (
+    <nav className="navbar-modern">
+      <div className="navbar-container">
+        <Link to="/" className="navbar-brand">
+          <img src={logo} alt="PEEC Logo" className="navbar-logo" />
+          <div className="navbar-title">
+            <span>Philadelphia Evangelical</span>
+            <span>Eritrean Church</span>
+          </div>
+        </Link>
 
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+        {/* Desktop Menu */}
+        <div className="navbar-links desktop-links">
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/updates">Events</Link>
+          <Link to="/sermons">Media</Link>
+          <Link to="/giving">Building Fund</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
 
-    return (
-        <nav className="navbar">
-            <div className="logo">Philadelphia Eritrean Evangelical Church</div>
-            {/*<div className="header"><h1>PEEC COLUMBUS</h1></div>*/}
+        {/* Mobile Button */}
+        <button
+          className="menu-btn"
+          onClick={() => setOpen(!open)}
+        >
+          ☰ Menu
+        </button>
 
-            <ul className="nav-links">
-                <li className="dropdown" ref={menuRef}>
-                    <button
-                        className="dropdown-button"
-                        onClick={() => setOpen(!open)}
-                    >
-                        Menu ▾
-                    </button>
-
-                    {open && (
-                        <ul className="dropdown-menu">
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/giving">Building Fund</Link>
-                            </li>
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/updates">Updates</Link>
-                            </li>
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/sermons">Sermons</Link>
-                            </li>
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/about">About</Link>
-                            </li>
-                            <li onClick={() => setOpen(false)}>
-                                <Link to="/contact">Contact</Link>
-                            </li>
-                        </ul>
-                    )}
-                </li>
-            </ul>
-        </nav>
-    );
+        {/* Mobile Dropdown */}
+        {open && (
+          <div className="mobile-menu">
+            <Link to="/" onClick={() => setOpen(false)}>Home</Link>
+            <Link to="/about" onClick={() => setOpen(false)}>About</Link>
+            <Link to="/updates" onClick={() => setOpen(false)}>Events</Link>
+            <Link to="/sermons" onClick={() => setOpen(false)}>Media</Link>
+            <Link to="/giving" onClick={() => setOpen(false)}>Building Fund</Link>
+            <Link to="/contact" onClick={() => setOpen(false)}>Contact</Link>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
-
-

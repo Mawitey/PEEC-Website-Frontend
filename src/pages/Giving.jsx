@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import flyerImage from "../images/Flyer.jpg";
+import flyerImage from "../images/Flyer.webp";
+
+import buildingHero from "../images/Event4.webp";
+import churchFamily from "../images/Event11.webp";
+import youthImage from "../images/Event3.webp";
+import youthImage from "../images/Event8.webp";
 
 function Giving() {
   const [showGiving, setShowGiving] = useState(false);
 
-  const toggleGiving = () => {
-    setShowGiving(!showGiving);
-  };
-
   return (
     <main className="building-page">
       <section className="building-hero">
-        <div className="building-hero-content">
+        <img src={buildingHero} alt="PEEC church children program" />
+
+        <div className="building-hero-overlay">
           <h1>Help Us Build Our Church Home</h1>
           <p>
             We are prayerfully working toward purchasing a permanent church
@@ -20,18 +23,13 @@ function Giving() {
           </p>
 
           <div className="building-buttons">
-            <a href="#vision" className="home-action-btn">
-              Learn More
-            </a>
-
-            <a href="#give" className="home-action-btn">
-              Give Now
-            </a>
+            <a href="#vision" className="home-action-btn">Learn More</a>
+            <a href="#give" className="home-action-btn">Give Now</a>
           </div>
         </div>
       </section>
 
-      <section id="vision" className="building-section">
+      <section id="vision" className="building-section intro-section">
         <h2>Our Vision</h2>
         <p>
           A permanent building will provide Philadelphia Evangelical Eritrean
@@ -39,6 +37,10 @@ function Giving() {
           Bible studies, youth ministry, fellowship, and outreach to the
           community.
         </p>
+      </section>
+
+      <section className="building-photo-section">
+        <img src={churchFamily} alt="PEEC church family gathering" />
       </section>
 
       <section className="impact-grid">
@@ -58,6 +60,19 @@ function Giving() {
         </div>
       </section>
 
+      <section className="building-image-text">
+        <div>
+          <h2>Building for the Next Generation</h2>
+          <p>
+            This vision is not only about a building. It is about creating a
+            spiritual home where children, youth, families, and future
+            generations can grow in faith and fellowship.
+          </p>
+        </div>
+
+        <img src={youthImage} alt="PEEC youth ministry" />
+      </section>
+
       <section className="building-section goal-box">
         <h2>Fundraising Goal</h2>
 
@@ -67,16 +82,12 @@ function Giving() {
         </p>
 
         <div className="goal-numbers">
-          <p>
-            <strong>Goal:</strong> $1.5M – $2M
-          </p>
-          <p>
-            <strong>Raised so far:</strong> $350,000+
-          </p>
+          <p><strong>Goal:</strong> $1.5M – $2M</p>
+          <p><strong>Raised so far:</strong> $350,000+</p>
         </div>
 
         <div className="flyer-box">
-          <h3>📄 View Full Fundraising Flyer</h3>
+          <h3>View Full Fundraising Flyer</h3>
           <p>
             See the full vision, progress, and how you can be part of building a
             permanent home for PEEC.
@@ -94,13 +105,17 @@ function Giving() {
 
             <a
               href={flyerImage}
-              download="PEEC-Building-Fundraiser-Flyer.jpg"
+              download="PEEC-Building-Fundraiser-Flyer.webp"
               className="home-action-btn"
             >
               Download Flyer
             </a>
           </div>
         </div>
+      </section>
+
+      <section className="building-photo-section">
+        <img src={youthImage2} alt="PEEC worship and prayer" />
       </section>
 
       <section id="give" className="building-section give-box">
@@ -111,15 +126,15 @@ function Giving() {
         </p>
 
         <div className="give-options">
-          <p>🙏 Pray for God’s guidance and provision</p>
-          <p>🤝 Share this page with family and friends</p>
-          <p>💛 Give through the official church donation methods</p>
+          <p>Pray for God’s guidance and provision</p>
+          <p>Share this page with family and friends</p>
+          <p>Give through the official church donation methods</p>
         </div>
 
         <button
           type="button"
           className="home-action-btn give-btn"
-          onClick={toggleGiving}
+          onClick={() => setShowGiving(!showGiving)}
         >
           {showGiving ? "Hide Giving Options" : "Show Giving Options"}
         </button>
@@ -131,19 +146,15 @@ function Giving() {
             <div className="giving-options-grid">
               <div className="card">
                 <h3>Zelle Giving</h3>
-                <ul>
-                  <li>
-                    One-time or recurring donations — Zelle:{" "}
-                    <strong>fundpeec2023@gmail.com</strong>
-                  </li>
-                </ul>
+                <p>
+                  One-time or recurring donations through Zelle:
+                </p>
+                <strong>fundpeec2023@gmail.com</strong>
               </div>
 
               <div className="card">
                 <h3>Card Giving</h3>
-                <ul>
-                  <li>Online donations with debit or credit card</li>
-                </ul>
+                <p>Online donations with debit or credit card.</p>
 
                 <a
                   href="https://givealittle.co/c/a43278e3-1113-4d56-b488-04b6eb2e80c3"
@@ -157,9 +168,7 @@ function Giving() {
 
               <div className="card">
                 <h3>In-Person Giving</h3>
-                <ul>
-                  <li>During Sunday service</li>
-                </ul>
+                <p>Give during Sunday service.</p>
               </div>
             </div>
           </div>

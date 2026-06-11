@@ -1,4 +1,4 @@
-import concertFlyer from "../images/Fundraising-concert.jpg";
+import concertFlyer from "../images/Fundraising-concert.webp";
 
 function Updates() {
     return (

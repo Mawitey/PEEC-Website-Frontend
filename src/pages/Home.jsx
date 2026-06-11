@@ -1,305 +1,479 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import churchSingers1 from "../images/NewYear1.jpg";
-import churchSingers2 from "../images/NewYear2.jpg";
-import churchSingers3 from "../images/NewYear3.jpg";
-import paster from "../images/Paster.jpg";
-import elder1 from "../images/Elder1.jpg";
-import elder2 from "../images/Elder2.jpg";
-import elder3 from "../images/Elder3.jpg";
-import elder4 from "../images/Elder4.jpg";
-import elder5 from "../images/Elder5.jpg";
+
+import heroImage from "../images/NewYear1.webp";
+
+import event0 from "../images/Event0.webp";
+import event1 from "../images/Event1.webp";
+import event2 from "../images/Event2.webp";
+import event3 from "../images/Event3.webp";
+import event4 from "../images/Event4.webp";
+import event5 from "../images/Event5.webp";
+import event6 from "../images/Event6.webp";
+import event7 from "../images/Event7.webp";
+import event8 from "../images/Event8.webp";
+import event10 from "../images/Event10.webp";
+import event11 from "../images/Event11.webp";
+import event12 from "../images/Event12.webp";
+import event13 from "../images/Event13.webp";
+import event14 from "../images/Event14.webp";
+import event15 from "../images/Event15.webp";
+import event16 from "../images/Event16.webp";
+import event17 from "../images/Event17.webp";
+import event18 from "../images/Event18.webp";
+import event19 from "../images/Event19.webp";
+import event20 from "../images/Event20.webp";
+import event22 from "../images/Event22.webp";
+import event23 from "../images/Event23.webp";
+
+import paster from "../images/Paster.webp";
+import elder1 from "../images/Elder1.webp";
+import elder2 from "../images/Elder2.webp";
+import elder3 from "../images/Elder3.webp";
+import elder4 from "../images/Elder4.webp";
+import elder5 from "../images/Elder5.webp";
 
 function Home() {
-    const [showMap, setShowMap] = useState(false);
-    const [showGiving, setShowGiving] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [showGiving, setShowGiving] = useState(false);
+  const [selectedLeader, setSelectedLeader] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-    // Leadership carousel
-    const trackRef = useRef(null);
-    const [activeDot, setActiveDot] = useState(0);
+  const [showEventLeft, setShowEventLeft] = useState(false);
+  const [showEventRight, setShowEventRight] = useState(true);
+  const [showLeaderLeft, setShowLeaderLeft] = useState(false);
+  const [showLeaderRight, setShowLeaderRight] = useState(true);
 
-    // Modal state (notes)
-    const [selectedLeader, setSelectedLeader] = useState(null);
+  const eventSliderRef = useRef(null);
+  const leaderSliderRef = useRef(null);
 
-    // Leaders data (add notes here)
-    const leaders = useMemo(
-        () => [
-            {
-                img: paster,
-                role: "Pastor",
-                name: "Negga Woldesemait",
-                notes:
-                    "Our pastor is devoted to preaching the Gospel of Jesus Christ, shepherding the church, and leading with prayer and humility.",
-            },
-            {
-                img: elder1,
-                role: "Elder",
-                name: "Tesfazghi Tesfou",
-                notes:
-                    "Our elders support the church through prayer, discipleship, and serving the congregation with wisdom and love.",
-            },
-            {
-                img: elder2,
-                role: "Elder",
-                name: "Paulos Gebremariam",
-                notes:
-                    "Our elders stand with the pastor to strengthen the church and encourage spiritual growth in the body of Christ.",
-            },
-            {
-                img: elder3,
-                role: "Elder",
-                name: "Mussie Mengisteab",
-                notes:
-                    "Dedicated to serving, teaching, and helping the church walk in unity and faith.",
-            },
-            {
-                img: elder4,
-                role: "Elder",
-                name: "Teklit Abraham",
-                notes:
-                    "Committed to prayer, outreach, and caring for the spiritual needs of the church family.",
-            },
-            {
-                img: elder5,
-                role: "Elder",
-                name: "Efrem Buru",
-                notes:
-                    "Dedicated to serving with humility, guiding the congregation, and strengthening faith through prayer and support.",
-            },
-        ],
-        []
+  const events = [
+    event0,
+    event1,
+    event2,
+    event5,
+    event6,
+    event10,
+    event13,
+    event22,
+    event14,
+    event16,
+    event17,
+    event18,
+    event23,
+    event19,
+  ];
+
+  const leaders = useMemo(
+    () => [
+      {
+        img: paster,
+        role: "Pastor",
+        name: "Negga Woldesemait",
+        title: "Pastor",
+        notes:
+          "Our pastor is devoted to preaching the Gospel of Jesus Christ, shepherding the church, and leading with prayer and humility.",
+      },
+      {
+        img: elder1,
+        role: "Elder",
+        name: "Tesfazghi Tesfou",
+        title: "Church Elder",
+        notes:
+          "Our elders support the church through prayer, discipleship, and serving the congregation with wisdom and love.",
+      },
+      {
+        img: elder2,
+        role: "Elder",
+        name: "Paulos Gebremariam",
+        title: "Church Elder",
+        notes:
+          "Our elders stand with the pastor to strengthen the church and encourage spiritual growth in the body of Christ.",
+      },
+      {
+        img: elder3,
+        role: "Elder",
+        name: "Mussie Mengisteab",
+        title: "Church Elder",
+        notes:
+          "Dedicated to serving, teaching, and helping the church walk in unity and faith.",
+      },
+      {
+        img: elder4,
+        role: "Elder",
+        name: "Teklit Abraham",
+        title: "Church Elder",
+        notes:
+          "Committed to prayer, outreach, and caring for the spiritual needs of the church family.",
+      },
+      {
+        img: elder5,
+        role: "Elder",
+        name: "Efrem Buru",
+        title: "Church Elder",
+        notes:
+          "Dedicated to serving with humility, guiding the congregation, and strengthening faith through prayer and support.",
+      },
+    ],
+    []
+  );
+
+  const checkEventSlider = () => {
+    const slider = eventSliderRef.current;
+    if (!slider) return;
+
+    setShowEventLeft(slider.scrollLeft > 5);
+    setShowEventRight(
+      slider.scrollLeft < slider.scrollWidth - slider.clientWidth - 5
     );
+  };
 
-    // Dots count based on screen width (pages)
-    const getPerPage = () => {
-        const w = window.innerWidth;
-        if (w < 520) return 1;
-        if (w < 900) return 2;
-        return 3;
+  const checkLeaderSlider = () => {
+    const slider = leaderSliderRef.current;
+    if (!slider) return;
+
+    setShowLeaderLeft(slider.scrollLeft > 5);
+    setShowLeaderRight(
+      slider.scrollLeft < slider.scrollWidth - slider.clientWidth - 5
+    );
+  };
+
+  useEffect(() => {
+    checkEventSlider();
+    checkLeaderSlider();
+
+    window.addEventListener("resize", checkEventSlider);
+    window.addEventListener("resize", checkLeaderSlider);
+
+    return () => {
+      window.removeEventListener("resize", checkEventSlider);
+      window.removeEventListener("resize", checkLeaderSlider);
     };
-    const [perPage, setPerPage] = useState(getPerPage());
+  }, []);
 
-    useEffect(() => {
-        const onResize = () => setPerPage(getPerPage());
-        window.addEventListener("resize", onResize);
-        return () => window.removeEventListener("resize", onResize);
-    }, []);
+  const toggleMap = () => {
+    setShowMap((value) => !value);
+    setShowGiving(false);
+  };
 
-    const dotCount = Math.max(1, Math.ceil(leaders.length / perPage));
+  const toggleGiving = () => {
+    setShowGiving((value) => !value);
+    setShowMap(false);
+  };
 
-    // Active dot based on real scroll progress
-    const handleScroll = () => {
-        const el = trackRef.current;
-        if (!el) return;
+  const slideEventsLeft = () => {
+    eventSliderRef.current?.scrollBy({ left: -320, behavior: "smooth" });
+    setTimeout(checkEventSlider, 450);
+  };
 
-        const max = el.scrollWidth - el.clientWidth;
-        if (max <= 0) {
-            setActiveDot(0);
-            return;
-        }
+  const slideEventsRight = () => {
+    eventSliderRef.current?.scrollBy({ left: 320, behavior: "smooth" });
+    setTimeout(checkEventSlider, 450);
+  };
 
-        const progress = el.scrollLeft / max; // 0..1
-        const index = Math.round(progress * (dotCount - 1));
-        setActiveDot(index);
-    };
+  const slideLeadersLeft = () => {
+    leaderSliderRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+    setTimeout(checkLeaderSlider, 450);
+  };
 
-    // Click dot -> scroll (clamped to max)
-    const scrollToDot = (index) => {
-        const el = trackRef.current;
-        if (!el) return;
-        if (dotCount === 1) return;
+  const slideLeadersRight = () => {
+    leaderSliderRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+    setTimeout(checkLeaderSlider, 450);
+  };
 
-        const max = el.scrollWidth - el.clientWidth;
-        if (max <= 0) return;
+  const PlanVisit = () => (
+    <section className="toggle-section">
+      <h2>Plan a Visit</h2>
 
-        const target = (index / (dotCount - 1)) * max;
-        el.scrollTo({ left: target, behavior: "smooth" });
-    };
+      <p>
+        We are located at{" "}
+        <a
+          href="https://www.google.com/maps/dir//Philadelphia+Eritrean+Evangelical+Church,+751+Rosehill+Rd,+Reynoldsburg,+OH+43068/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="location-link"
+        >
+          <strong>751 Rosehill Rd, Reynoldsburg, OH 43068</strong>
+        </a>
+      </p>
 
-    // Close modal (overlay click)
-    const closeModal = () => setSelectedLeader(null);
+      <div className="map-wrapper">
+        <iframe
+          title="Philadelphia Eritrean Evangelical Church"
+          src="https://www.google.com/maps?q=Philadelphia+Eritrean+Evangelical+Church+751+Rosehill+Rd+Reynoldsburg+OH+43068&output=embed"
+          width="100%"
+          height="350"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+        />
+      </div>
+    </section>
+  );
 
-    // OPTIONAL: Only allow one panel open at a time
-    const toggleMap = () => {
-        setShowMap((v) => !v);
-        setShowGiving(false);
-    };
+  const Give = () => (
+    <section className="toggle-section">
+      <h2>Give Now</h2>
 
-    const toggleGiving = () => {
-        setShowGiving((v) => !v);
-        setShowMap(false);
-    };
+      <div className="giving-grid">
+        <div className="giving-card">
+          <h3>Online Giving</h3>
+          <p>
+            Zelle: <strong>peecc2010@gmail.com</strong>
+          </p>
+        </div>
 
-    return (
-        <>
-            {/* HERO SECTION */}
-            <div className="home-page">
-                <section className="hero">
-                    <h1>Welcome to Our Church</h1>
+        <div className="giving-card">
+          <h3>In-Person Giving</h3>
+          <p>During Sunday worship service.</p>
+        </div>
+      </div>
+    </section>
+  );
 
-                    <title>Philadelphia Eritrean Evangelical Church in Columbus Ohio | PEEC</title>
-                    <meta name="description"
-                          content="PEEC is a non-denominational church serving the Eritrean community in Columbus Ohio. Join us for worship, prayer, and fellowship." />
+  return (
+    <main className="home-page">
+      <section className="hero-section">
+        <div className="hero-text">
 
-                    <div className="hero-block">
-                        <img
-                            src={churchSingers1}
-                            alt="PEEC singers"
-                            loading="eager"
-                            fetchPriority="high"
-                        />
-                        <p>
-                            Whether you are from Columbus or across the globe, we invite you
-                            to join us as we worship Jesus, build faith, and live out His love
-                            every day.
-                        </p>
-                    </div>
+          <h1>
+            Welcome to <br />
+            Our Church
+          </h1>
 
-                    <div className="hero-block reverse">
-                        <img src={churchSingers2} alt="PEEC singers" loading="lazy" />
-                        <p>Come and grow with us in faith and community.</p>
-                    </div>
+          <p>
+            Join us for worship, prayer, fellowship, and the Word of God.
+            We welcome you and your family to worship with us in Columbus, Ohio.
+          </p>
 
-                    <div className="hero-block">
-                        <img src={churchSingers3} alt="PEEC singers" loading="lazy" />
-                    </div>
+          <p className="service-time">
+            Sunday Worship Service • 12:30 PM
+          </p>
 
-                    {/* ACTION BUTTONS */}
-                    <div className="home-actions">
-                        <button type="button" className="home-action-btn" onClick={toggleMap}>
-                            {showMap ? "Hide Location" : "Plan a Visit"}
-                        </button>
+          <div className="hero-buttons">
+            <button type="button" className="primary-btn" onClick={toggleMap}>
+              {showMap ? "Hide Location" : "Plan a Visit"}
+            </button>
 
-                        <button
-                            type="button"
-                            className="home-action-btn"
-                            onClick={toggleGiving}
-                        >
-                            {showGiving ? "Hide Give" : "Give"}
-                        </button>
-                    </div>
+            <button
+              type="button"
+              className="secondary-btn"
+              onClick={toggleGiving}
+            >
+              {showGiving ? "Hide Give" : "Give"}
+            </button>
+          </div>
 
-                    {/* LOCATION MAP (TOGGLED) */}
-                    {showMap && (
-                        <div className="location-container">
-                            <h2>Our Location</h2>
-                            <p>
-                                We are located at{" "}
-                                <strong>751 Rosehill Rd, Reynoldsburg, OH 43068</strong>
-                            </p>
+          <div className="mobile-toggle">
+            {showMap && <PlanVisit />}
+            {showGiving && <Give />}
+          </div>
+        </div>
 
-                            <div className="map-wrapper">
-                                <iframe
-                                    title="Church Location"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97730.01836957318!2d-82.96823176093748!3d40.05169333219518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8838647f081b0a85%3A0x2f7957d158dbf5fb!2sThe%20Cross%20Walk%20Church!5e0!3m2!1sen!2sus!4v1767201921284!5m2!1sen!2sus"
-                                    width="100%"
-                                    height="350"
-                                    style={{ border: 0 }}
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                    allowFullScreen
-                                />
-                            </div>
-                        </div>
-                    )}
+        <div className="hero-image-wrapper">
+          <img src={heroImage} alt="PEEC church worship" />
+        </div>
+      </section>
 
-                    {/* GIVING INFO (TOGGLED) */}
-                    {showGiving && (
-                        <div className="giving-container">
-                            <h2>Give Now</h2>
+      <div className="desktop-toggle">
+        {showMap && <PlanVisit />}
+        {showGiving && <Give />}
+      </div>
 
-                            <section className="dark-section">
-                                <div className="card">
-                                    <h3>Online Giving</h3>
-                                    <ul>
-                                        <li>
-                                            One-time or recurring donations — Zelle:
-                                            {" "}
-                                            <strong>peecc2010@gmail.com</strong>
-                                        </li>
-                                    </ul>
-                                </div>
+      <section className="info-cards">
+        <div className="info-card">
+          <img
+            src={event15}
+            alt="Grow in Faith"
+            className="info-card-img clickable-image"
+            onClick={() => setSelectedImage(event15)}
+          />
 
-                                <div className="card">
-                                    <h3>In-Person Giving</h3>
-                                    <ul>
-                                        <li>During Sunday service</li>
-                                    </ul>
-                                </div>
-                            </section>
-                        </div>
-                    )}
+          <div className="info-card-content">
+            <div className="icon-circle">👥</div>
+            <h3>Grow in Faith</h3>
+            <p>Strengthen your relationship with God through prayer.</p>
+          </div>
+        </div>
 
-                    {/* LEADERSHIP CAROUSEL */}
-                    <div className="leadership-section">
-                        <h2>Our Leadership</h2>
+        <div className="info-card">
+          <img
+            src={event7}
+            alt="Community"
+            className="info-card-img clickable-image"
+            onClick={() => setSelectedImage(event7)}
+          />
 
-                        <div
-                            className="leader-track leader-track--paged leader-track--big"
-                            ref={trackRef}
-                            onScroll={handleScroll}
-                        >
-                            {leaders.map((leader, idx) => (
-                                <button
-                                    type="button"
-                                    className="leader-card leader-card--btn"
-                                    key={idx}
-                                    onClick={() => setSelectedLeader(leader)}
-                                >
-                                    <img src={leader.img} alt={leader.name} loading="lazy" />
-                                    <div className="leader-meta">
-                                        <div className="leader-role">{leader.role}</div>
-                                        <div className="leader-name">{leader.name}</div>
-                                        <div className="leader-tap">Tap for notes</div>
-                                    </div>
-                                </button>
-                            ))}
-                        </div>
+          <div className="info-card-content">
+            <div className="icon-circle">⛪</div>
+            <h3>Community</h3>
+            <p>We are a family. Connect, encourage, and serve together.</p>
+          </div>
+        </div>
 
-                        {/* DOTS */}
-                        <div className="slider-dots" aria-label="Leadership slider dots">
-                            {Array.from({ length: dotCount }).map((_, i) => (
-                                <button
-                                    key={i}
-                                    className={`dot ${i === activeDot ? "active" : ""}`}
-                                    onClick={() => scrollToDot(i)}
-                                    aria-label={`Go to slide ${i + 1}`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            </div>
+        <div className="info-card">
+          <img
+            src={event20}
+            alt="Make an Impact"
+            className="info-card-img clickable-image"
+            onClick={() => setSelectedImage(event20)}
+          />
 
-            {/* MODAL (NOTES) */}
-            {selectedLeader && (
-                <div className="leader-modal-overlay" onClick={closeModal}>
-                    <div
-                        className="leader-modal"
-                        onClick={(e) => e.stopPropagation()}
-                        role="dialog"
-                        aria-modal="true"
-                    >
-                        <img
-                            className="leader-modal-img"
-                            src={selectedLeader.img}
-                            alt={selectedLeader.name}
-                        />
-                        <h2 className="leader-modal-title">{selectedLeader.name}</h2>
-                        <p className="leader-modal-role">{selectedLeader.role}</p>
-                        <p className="leader-modal-notes">{selectedLeader.notes}</p>
+          <div className="info-card-content">
+            <div className="icon-circle">♡</div>
+            <h3>Make an Impact</h3>
+            <p>Serve others and share God’s love.</p>
+          </div>
+        </div>
+      </section>
 
-                        <button
-                            type="button"
-                            className="leader-modal-close"
-                            onClick={closeModal}
-                        >
-                            Close
-                        </button>
-                    </div>
+      <section className="events-section">
+        <h2>Life at PEEC</h2>
+
+        <p>
+          Worship, fellowship, youth ministry, cultural celebrations, and church
+          family gatherings.
+        </p>
+
+        <div className="slider-container">
+          {showEventLeft && (
+            <button
+              type="button"
+              className="slider-btn left"
+              onClick={slideEventsLeft}
+            >
+              ❮
+            </button>
+          )}
+
+          <div
+            className="slider-track"
+            ref={eventSliderRef}
+            onScroll={checkEventSlider}
+          >
+            {events.map((image, index) => (
+              <button
+                type="button"
+                className="slider-card"
+                key={index}
+                onClick={() => setSelectedImage(image)}
+              >
+                <img src={image} alt={`PEEC event ${index + 1}`} loading="lazy" />
+              </button>
+            ))}
+          </div>
+
+          {showEventRight && (
+            <button
+              type="button"
+              className="slider-btn right"
+              onClick={slideEventsRight}
+            >
+              ❯
+            </button>
+          )}
+        </div>
+      </section>
+
+      <section className="leadership-section">
+        <h2>Our Leadership</h2>
+        <div className="section-line"></div>
+
+        <div className="slider-container">
+          {showLeaderLeft && (
+            <button
+              type="button"
+              className="slider-btn left"
+              onClick={slideLeadersLeft}
+            >
+              ❮
+            </button>
+          )}
+
+          <div
+            className="leader-slider-track"
+            ref={leaderSliderRef}
+            onScroll={checkLeaderSlider}
+          >
+            {leaders.map((leader, index) => (
+              <button
+                type="button"
+                className="leader-card"
+                key={index}
+                onClick={() => setSelectedLeader(leader)}
+              >
+                <img src={leader.img} alt={leader.name} loading="lazy" />
+
+                <div className="leader-info">
+                  <span>{leader.role}</span>
+                  <h3>{leader.name}</h3>
+                  <p>{leader.title}</p>
                 </div>
-            )}
-        </>
-    );
+              </button>
+            ))}
+          </div>
+
+          {showLeaderRight && (
+            <button
+              type="button"
+              className="slider-btn right"
+              onClick={slideLeadersRight}
+            >
+              ❯
+            </button>
+          )}
+        </div>
+      </section>
+
+      {selectedImage && (
+        <div
+          className="gallery-modal-overlay"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="gallery-modal" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedImage} alt="PEEC enlarged view" />
+
+            <button
+              type="button"
+              className="gallery-close-btn"
+              onClick={() => setSelectedImage(null)}
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+      {selectedLeader && (
+        <div
+          className="leader-modal-overlay"
+          onClick={() => setSelectedLeader(null)}
+        >
+          <div
+            className="leader-modal"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img
+              className="leader-modal-img"
+              src={selectedLeader.img}
+              alt={selectedLeader.name}
+            />
+
+            <h2>{selectedLeader.name}</h2>
+            <p className="leader-modal-role">{selectedLeader.role}</p>
+            <p>{selectedLeader.notes}</p>
+
+            <button
+              type="button"
+              className="leader-modal-close"
+              onClick={() => setSelectedLeader(null)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </main>
+  );
 }
 
 export default Home;
