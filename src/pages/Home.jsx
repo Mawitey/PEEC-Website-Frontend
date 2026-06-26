@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import heroImage from "../images/NewYear1.webp";
+import event24 from "../images/Event24.webp";
 
 import event0 from "../images/Event0.webp";
 import event1 from "../images/Event1.webp";
@@ -9,7 +10,6 @@ import event3 from "../images/Event3.webp";
 import event4 from "../images/Event4.webp";
 import event5 from "../images/Event5.webp";
 import event6 from "../images/Event6.webp";
-import event7 from "../images/Event7.webp";
 import event8 from "../images/Event8.webp";
 import event10 from "../images/Event10.webp";
 import event11 from "../images/Event11.webp";
@@ -21,9 +21,11 @@ import event16 from "../images/Event16.webp";
 import event17 from "../images/Event17.webp";
 import event18 from "../images/Event18.webp";
 import event19 from "../images/Event19.webp";
-import event20 from "../images/Event20.webp";
 import event22 from "../images/Event22.webp";
 import event23 from "../images/Event23.webp";
+import event25 from "../images/Event25.webp";
+import event26 from "../images/Event26.webp";
+import event28 from "../images/Event28.webp";
 
 import paster from "../images/Paster.webp";
 import elder1 from "../images/Elder1.webp";
@@ -33,6 +35,7 @@ import elder4 from "../images/Elder4.webp";
 import elder5 from "../images/Elder5.webp";
 
 function Home() {
+  const navigate = useNavigate();
   const [showMap, setShowMap] = useState(false);
   const [showGiving, setShowGiving] = useState(false);
   const [selectedLeader, setSelectedLeader] = useState(null);
@@ -51,12 +54,12 @@ function Home() {
     event1,
     event2,
     event5,
-    event6,
     event10,
+    event16,
     event13,
     event22,
     event14,
-    event16,
+    event25,
     event17,
     event18,
     event23,
@@ -234,20 +237,17 @@ function Home() {
     <main className="home-page">
       <section className="hero-section">
         <div className="hero-text">
-
           <h1>
             Welcome to <br />
             Our Church
           </h1>
 
           <p>
-            Join us for worship, prayer, fellowship, and the Word of God.
-            We welcome you and your family to worship with us in Columbus, Ohio.
+            Join us for worship, prayer, fellowship, and the Word of God. We
+            welcome you and your family to worship with us in Columbus, Ohio.
           </p>
 
-          <p className="service-time">
-            Sunday Worship Service • 12:30 PM
-          </p>
+          <p className="service-time">Sunday Worship Service • 12:30 PM</p>
 
           <div className="hero-buttons">
             <button type="button" className="primary-btn" onClick={toggleMap}>
@@ -261,6 +261,14 @@ function Home() {
             >
               {showGiving ? "Hide Give" : "Give"}
             </button>
+
+            <button
+              type="button"
+              className="primary-btn"
+              onClick={() => navigate("/giving")}
+            >
+              Building Fund
+            </button>
           </div>
 
           <div className="mobile-toggle">
@@ -270,7 +278,14 @@ function Home() {
         </div>
 
         <div className="hero-image-wrapper">
-          <img src={heroImage} alt="PEEC church worship" />
+          <img
+            src={localStorage.getItem("homeHeroImage") || event28}
+            alt="PEEC church worship"
+            className="clickable-image"
+            onClick={() =>
+              setSelectedImage(localStorage.getItem("homeHeroImage") || event28)
+            }
+          />
         </div>
       </section>
 
@@ -282,10 +297,12 @@ function Home() {
       <section className="info-cards">
         <div className="info-card">
           <img
-            src={event15}
+            src={localStorage.getItem("growFaithImage") || event15}
             alt="Grow in Faith"
             className="info-card-img clickable-image"
-            onClick={() => setSelectedImage(event15)}
+            onClick={() =>
+              setSelectedImage(localStorage.getItem("growFaithImage") || event15)
+            }
           />
 
           <div className="info-card-content">
@@ -297,10 +314,12 @@ function Home() {
 
         <div className="info-card">
           <img
-            src={event7}
+            src={localStorage.getItem("communityImage") || event24}
             alt="Community"
             className="info-card-img clickable-image"
-            onClick={() => setSelectedImage(event7)}
+            onClick={() =>
+              setSelectedImage(localStorage.getItem("communityImage") || event24)
+            }
           />
 
           <div className="info-card-content">
@@ -312,10 +331,12 @@ function Home() {
 
         <div className="info-card">
           <img
-            src={event20}
+            src={localStorage.getItem("impactImage") || event26}
             alt="Make an Impact"
             className="info-card-img clickable-image"
-            onClick={() => setSelectedImage(event20)}
+            onClick={() =>
+              setSelectedImage(localStorage.getItem("impactImage") || event26)
+            }
           />
 
           <div className="info-card-content">

@@ -11,8 +11,8 @@ function Navbar() {
         <Link to="/" className="navbar-brand">
           <img src={logo} alt="PEEC Logo" className="navbar-logo" />
           <div className="navbar-title">
-            <span>Philadelphia Evangelical</span>
-            <span>Eritrean Church</span>
+            <span>Philadelphia Eritrean</span>
+            <span>Evangelical Church</span>
           </div>
         </Link>
 

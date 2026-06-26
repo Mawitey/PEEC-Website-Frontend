@@ -4,7 +4,7 @@ import flyerImage from "../images/Flyer.webp";
 import buildingHero from "../images/Event4.webp";
 import churchFamily from "../images/Event11.webp";
 import youthImage from "../images/Event3.webp";
-import youthImage from "../images/Event8.webp";
+import youthImage2 from "../images/Event8.webp";
 
 function Giving() {
   const [showGiving, setShowGiving] = useState(false);

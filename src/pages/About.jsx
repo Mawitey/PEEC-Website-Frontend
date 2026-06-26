@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import churchFamily from "../images/Event24.webp";
+import churchFamily from "../images/Event7.webp";
 
 
 function About() {
