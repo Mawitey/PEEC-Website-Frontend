@@ -1,19 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
 import event24 from "../images/Event24.webp";
 
 import event0 from "../images/Event0.webp";
 import event1 from "../images/Event1.webp";
 import event2 from "../images/Event2.webp";
-import event3 from "../images/Event3.webp";
-import event4 from "../images/Event4.webp";
 import event5 from "../images/Event5.webp";
-import event6 from "../images/Event6.webp";
-import event8 from "../images/Event8.webp";
 import event10 from "../images/Event10.webp";
-import event11 from "../images/Event11.webp";
-import event12 from "../images/Event12.webp";
 import event13 from "../images/Event13.webp";
 import event14 from "../images/Event14.webp";
 import event15 from "../images/Event15.webp";
@@ -36,7 +31,7 @@ import elder5 from "../images/Elder5.webp";
 
 function Home() {
   const navigate = useNavigate();
-  const [showMap, setShowMap] = useState(false);
+
   const [showGiving, setShowGiving] = useState(false);
   const [selectedLeader, setSelectedLeader] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -48,6 +43,8 @@ function Home() {
 
   const eventSliderRef = useRef(null);
   const leaderSliderRef = useRef(null);
+
+  const heroImage = localStorage.getItem("homeHeroImage") || event28;
 
   const events = [
     event0,
@@ -153,14 +150,8 @@ function Home() {
     };
   }, []);
 
-  const toggleMap = () => {
-    setShowMap((value) => !value);
-    setShowGiving(false);
-  };
-
   const toggleGiving = () => {
     setShowGiving((value) => !value);
-    setShowMap(false);
   };
 
   const slideEventsLeft = () => {
@@ -183,34 +174,15 @@ function Home() {
     setTimeout(checkLeaderSlider, 450);
   };
 
-  const PlanVisit = () => (
-    <section className="toggle-section">
-      <h2>Plan a Visit</h2>
-
-      <p>
-        We are located at{" "}
-        <a
-          href="https://www.google.com/maps/dir//Philadelphia+Eritrean+Evangelical+Church,+751+Rosehill+Rd,+Reynoldsburg,+OH+43068/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="location-link"
-        >
-          <strong>751 Rosehill Rd, Reynoldsburg, OH 43068</strong>
-        </a>
-      </p>
-
-      <div className="map-wrapper">
-        <iframe
-          title="Philadelphia Eritrean Evangelical Church"
-          src="https://www.google.com/maps?q=Philadelphia+Eritrean+Evangelical+Church+751+Rosehill+Rd+Reynoldsburg+OH+43068&output=embed"
-          width="100%"
-          height="350"
-          style={{ border: 0 }}
-          loading="lazy"
-          allowFullScreen
-        />
-      </div>
-    </section>
+  const HeroImage = ({ className }) => (
+    <div className={className}>
+      <img
+        src={heroImage}
+        alt="PEEC church worship"
+        className="clickable-image"
+        onClick={() => setSelectedImage(heroImage)}
+      />
+    </div>
   );
 
   const Give = () => (
@@ -237,62 +209,58 @@ function Home() {
     <main className="home-page">
       <section className="hero-section">
         <div className="hero-text">
-          <h1>
-            Welcome to <br />
-            Our Church
-          </h1>
+          <h1>Welcome to Our Church</h1>
 
           <p>
-            Join us for worship, prayer, fellowship, and the Word of God. We
-            welcome you and your family to worship with us in Columbus, Ohio.
+            Join us for worship, prayer, fellowship, and the Word of God.
           </p>
 
-          <p className="service-time">Sunday Worship Service • 12:30 PM</p>
+          <div className="home-info">
+            <div className="info-pill">
+              <FaCalendarAlt />
+              <span>Sunday Worship Service • 12:30 PM</span>
+            </div>
+
+            <a
+              href="https://www.google.com/maps/dir//Philadelphia+Eritrean+Evangelical+Church,+751+Rosehill+Rd,+Reynoldsburg,+OH+43068/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="info-pill"
+            >
+              <FaMapMarkerAlt />
+              <span>751 Rosehill Rd, Reynoldsburg, OH 43068</span>
+            </a>
+          </div>
 
           <div className="hero-buttons">
-            <button type="button" className="primary-btn" onClick={toggleMap}>
-              {showMap ? "Hide Location" : "Plan a Visit"}
-            </button>
+            <HeroImage className="mobile-hero-image" />
 
-            <button
-              type="button"
-              className="secondary-btn"
-              onClick={toggleGiving}
-            >
-              {showGiving ? "Hide Give" : "Give"}
-            </button>
+            <div className="hero-buttons-row">
+              <button
+                type="button"
+                className="primary-btn"
+                onClick={toggleGiving}
+              >
+                {showGiving ? "Hide Give" : "Give"}
+              </button>
 
-            <button
-              type="button"
-              className="primary-btn"
-              onClick={() => navigate("/giving")}
-            >
-              Building Fund
-            </button>
+              <button
+                type="button"
+                className="primary-btn"
+                onClick={() => navigate("/giving")}
+              >
+                Building Fund
+              </button>
+            </div>
           </div>
 
-          <div className="mobile-toggle">
-            {showMap && <PlanVisit />}
-            {showGiving && <Give />}
-          </div>
+          <div className="mobile-toggle">{showGiving && <Give />}</div>
         </div>
 
-        <div className="hero-image-wrapper">
-          <img
-            src={localStorage.getItem("homeHeroImage") || event28}
-            alt="PEEC church worship"
-            className="clickable-image"
-            onClick={() =>
-              setSelectedImage(localStorage.getItem("homeHeroImage") || event28)
-            }
-          />
-        </div>
+        <HeroImage className="hero-image-wrapper desktop-hero-image" />
       </section>
 
-      <div className="desktop-toggle">
-        {showMap && <PlanVisit />}
-        {showGiving && <Give />}
-      </div>
+      <div className="desktop-toggle">{showGiving && <Give />}</div>
 
       <section className="info-cards">
         <div className="info-card">

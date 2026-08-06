@@ -10,20 +10,7 @@ function Updates() {
                 <h2>Announcements</h2>
 
                 <div className="card">
-                    <h3>PEEC Fundraising Concert</h3>
 
-                    <p>
-                        Join us for a special fundraising concert as we work together
-                        toward building a permanent home for Philadelphia Evangelical
-                        Eritrean Church. We invite everyone to worship, fellowship,
-                        and support this important vision.
-                    </p>
-
-                    <img
-                        src={concertFlyer}
-                        alt="PEEC Fundraising Concert"
-                        className="announcement-flyer"
-                    />
 
                 </div>
             </section>

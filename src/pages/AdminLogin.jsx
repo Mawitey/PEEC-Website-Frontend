@@ -8,8 +8,7 @@ function AdminLogin() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || "admin";
-    if (password === adminPassword) {
+    if (password === "peec123") {
       localStorage.setItem("peecAdminLoggedIn", "true");
       navigate("/admin/dashboard");
     } else {
