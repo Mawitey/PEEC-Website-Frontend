@@ -112,6 +112,33 @@ function Giving() {
             </a>
           </div>
         </div>
+
+        <div className="flyer-box">
+          <h3>View the Building Donor Proposal</h3>
+          <p>
+            Read the complete PEEC building vision, donor proposal, and details
+            about how your support can help establish a permanent church home.
+          </p>
+
+          <div className="flyer-buttons">
+            <a
+              href="/PEEC-Building-Donor-Proposal.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="home-action-btn"
+            >
+              Open Proposal
+            </a>
+
+            <a
+              href="/PEEC-Building-Donor-Proposal.pdf"
+              download="PEEC-Building-Donor-Proposal.pdf"
+              className="home-action-btn"
+            >
+              Download Proposal
+            </a>
+          </div>
+        </div>
       </section>
 
       <section className="building-photo-section">
